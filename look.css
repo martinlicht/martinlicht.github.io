@@ -2,7 +2,6 @@
     /* Hintergrundfarbe und allgemeine schrift */
     
     body {
-        /*font-family: "Trebuchet MS", Helvetica, sans-serif;*/
         font-family: Helvetica, sans-serif;
         background-color: #E8E8E8; /* seite hintergrund */
     }
@@ -14,7 +13,7 @@
     {    
         /*border-radius: 1.5rem 1.5rem 0.0rem 0.0rem;*/
         border-radius: 0rem 0rem 0.0rem 0.0rem;
-        border-width: 0.3125rem; /* 5px; */
+        border-width: 0.0rem; /* 5px; */
         border-style: solid;
         
         margin-bottom: 0.3125rem; /* 5px; */
@@ -28,7 +27,7 @@
     section
     {    
         border-radius: 0rem 0rem 0.0rem 0rem;
-        border-width: 0.3125rem; /* 5px; */
+        border-width: 0.0rem; /* 5px; */
         border-style: solid;
         margin-top: 0.3125rem; /* 5px; */
         margin-bottom: 0.3125rem; /* 5px; */
@@ -37,22 +36,7 @@
         
     }
     
-    section.sunny
-    {    
-        padding: 0.05rem 3.85rem; /* 80px 120px; */        
-    }
-
     
-    table.autonomous
-    {
-        border-radius: 0rem 0rem 0.0rem 0rem;
-        border-width: 0.3125rem; /* 5px; */
-        border-style: solid;
-        margin-top: 0.3125rem; /* 5px; */
-        margin-bottom: 0.3125rem; /* 5px; */
-        padding: 0rem; /* 10px; */
-        padding: 0rem; /* 80px 120px; */        
-    }
     
     
 @media all and (max-width: 70rem) {
@@ -68,7 +52,7 @@
     footer
     {    
         border-radius: 0.0rem 0.0rem 1.5rem 1.5rem;
-        border-width: 0.3125rem; /* 5px; */
+        border-width: 0.0rem; /* 5px; */
         border-style: solid;
         margin-top: 0.3125rem; /* 5px; */
         padding: 0.625rem; /* 10px; */ 
@@ -119,7 +103,7 @@
         padding: 0rem;
     
         border-radius: 0rem 1.5rem 0.0rem;
-        border-width: 0.3125rem; /* 5px; */
+        border-width: 0.0rem; /* 5px; */
         border-style: solid;
         border-style: none;
     }
@@ -143,7 +127,7 @@
         /* float: left ist eine schlechte Idee */
         
         border-style: none;
-        border-color: #31D1F1;
+        border-color: #BDFFFC;
     }
     
     nav a
@@ -160,14 +144,14 @@
         border-radius: 0rem 0rem 0.0rem;
         border-width: 0rem;
         border-style: solid;
-        border-color: #31D1F1; /* FF6F1B navigationsanker kante */
+        border-color: #BDFFFC; /* FF6F1B navigationsanker kante */
         text-align: center;
         text-decoration: none;
         font-size: 18pt;
     }
 
     nav a:hover {
-        background-color: #31D1F1; /* 76DEF3 FF6F1B navigationsanker hintergrund hover = navigationsanker kante */
+        background-color: #BDFFFC; /* 76DEF3 FF6F1B navigationsanker hintergrund hover = navigationsanker kante */
         cursor: pointer;
     }
 
