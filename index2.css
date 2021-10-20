@@ -1,0 +1,300 @@
+
+
+
+
+
+    /* Hintergrundfarbe und allgemeine schrift */
+    
+    body {
+        
+        margin-left: auto;
+        margin-right: auto;
+        padding-left:   10px;
+        padding-right:  10px;
+        padding-top:    10px;
+        padding-bottom: 10px;
+
+        width: 80em;
+        max-width: 98vw;
+        /* min-width: 60em; */
+        
+
+        font-family: Helvetica, sans-serif;
+        background-color: #E8E8E8; /* seite hintergrund */
+    }
+    
+    /* img{max-width:100%;width:auto\9;height:auto;vertical-align:middle;} */
+
+    /* Kantenstil und Distanzen fuer alle relevanten elemente */
+    
+    header
+    {    
+        margin-top:    0.0rem; 
+        margin-bottom: 0.3125rem; 
+        margin-left:   0.0rem; 
+        margin-right:  0.0rem; 
+        
+        border-width: 0.125rem; 
+        border-style: solid;
+        
+        padding: 0rem; 
+
+        background: #FFFFFF; /* background: #FFDDC9; header hintergrund */
+        border-color: #31D1F1; /* #FF6F1B header kante */
+
+        width:auto;
+
+        border-radius: 1em
+        
+    }
+    
+    section, footer
+    {    
+        
+        margin-top:    0.3125rem;
+        margin-bottom: 0.3125rem;
+        margin-left:   0.0rem;
+        margin-right:  0.0rem;
+        
+        padding-top:    2.5rem; 
+        padding-bottom: 2.5rem; 
+        padding-left:   3.85rem; 
+        padding-right:  3.85rem; 
+        
+        background: #FFFFFF; /* section hintergrund - #F8F8F8*/
+        
+        border-radius: 1em;
+
+        height:auto;
+
+    }
+
+    footer
+    {    
+        
+        margin-top:    0.3125rem;
+        margin-bottom: 0.0rem;
+        margin-left:   0.0rem;
+        margin-right:  0.0rem;
+        
+        padding-top:    2.5rem; 
+        padding-bottom: 2.5rem; 
+        padding-left:   3.85rem; 
+        padding-right:  3.85rem; 
+        
+    }
+
+
+    
+    
+    
+    
+@media all and (max-width: 70rem) {
+    
+    section, footer {
+
+        padding-top:    1rem; 
+        padding-bottom: 1rem; 
+        padding-left:   2rem; 
+        padding-right:  2rem;
+        
+    }
+
+}
+
+
+    
+    footer
+    {    
+        margin-top:    0.3125rem;
+        margin-bottom: 0.0rem; 
+        margin-left:   0.0rem; 
+        margin-right:  0.0rem; 
+
+        background: #BDFFFC; /* footer hintergrund */
+        
+        border-radius: 1em;
+
+        text-align: right;
+    }
+
+    
+    
+    
+    /* Navigationsleiste */
+    
+    nav
+    {    
+        margin: 0rem;
+        padding: 0rem;
+    
+        border-radius: 1em;
+        border-width: 0.0rem;
+        border-style: solid;
+        border-style: none;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around + safe;
+        align-items: stretch;
+        align-content: stretch;
+
+        overflow: hidden;
+
+        text-align: center;
+    }
+    
+    @media all and (max-width: 60rem) {
+    
+        nav {
+            flex-direction: column;
+        }
+
+    }
+
+    nav a
+    {
+        margin: 0rem;
+
+        border-width: 0rem;
+        border-style: solid;
+        border-color: #BDFFFC; /* FF6F1B navigationsanker kante */
+        background: #FFFFFF;
+
+        padding-top: 1.28rem; /* 20px; */ 
+        padding-bottom: 1.28rem; /* 20px; */ 
+
+        padding-left:  1rem; /* 50px; */
+        padding-right: 1rem; /* 50px; */
+
+        text-align: center;
+
+        display: inline;
+
+        flex: 10 1 100%;
+
+        border-radius: 0rem 0rem 0.0rem;
+
+        text-decoration: none;
+        font-size: 18pt;
+    }
+
+
+    nav a
+    {    
+        background: #FFFFFF; /* #FFDDC9; navigationsanker hintergrund */
+        cursor: pointer;
+        background-image: linear-gradient(#BDFFFC, #BDFFFC);
+        background-size: 0% 100%;
+
+    }
+
+    nav a:hover {
+        /* background-color: #BDFFFC;  */
+        /* 76DEF3 FF6F1B navigationsanker hintergrund hover = navigationsanker kante */
+        background-image: linear-gradient(#BDFFFC, #BDFFFC);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+        
+    @media (pointer:fine) {
+    
+        nav a:hover {
+
+            transition: background-size .25s
+
+        }    
+
+    }
+
+    nav a:link {
+        color: black; /* #E50091; */
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    nav a:visited {
+        color: black;/* #25aaa0; */
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    nav a:link:active, 
+    nav a:visited:active {
+        color: black;
+        text-decoration: none;
+        
+    }
+    
+    a.tarnkappe {
+      opacity: 0;
+      color: white;
+      font-size: 1pt;
+    }
+ 
+
+
+
+
+.mycontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    justify-items: flex-start;
+}
+
+/* @media all and (max-width: 60rem) {
+    
+    .mycontainer {
+        flex-direction: column
+    }
+    
+} */
+
+
+
+
+/* https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet */
+/* https://msdn.microsoft.com/en-us/library/hh771830(v=vs.85).aspx */
+
+/* @media all and (-ms-high-contrast: none), (-ms-high-contrast: black-on-white), (-ms-high-contrast: white-on-black), (-ms-high-contrast: active) {
+     
+    nav ul {
+        
+        flex-direction: row;
+        
+    }
+    
+} */
+
+
+    
+/*
+
+@media all and (max-width: 60rem) {
+    
+    section img.hauptbild{
+        max-width:35%;
+        float: right;
+    }
+
+}
+
+@media all and (max-width: 50rem) {
+
+    section img.hauptbild{
+        max-width:0%;
+        float: none;
+        visibility:hidden;
+    }
+
+}
+
+*/
+
+
+
