@@ -48,7 +48,7 @@
         
     }
     
-    section, footer
+    article, section, footer
     {    
         
         margin-top:    0.3125rem;
@@ -91,7 +91,7 @@
     
 @media all and (max-width: 70rem) {
     
-    section, footer {
+    article, section, footer {
 
         padding-top:    1rem; 
         padding-bottom: 1rem; 
