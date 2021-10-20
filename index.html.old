@@ -13,7 +13,7 @@
         <meta name="author" content="Martin Licht">
         <meta name="viewport" content="width=device-width; initial-scale=1.0">
         
-        <link href="index2.css" rel="stylesheet" type="text/css">
+        <link href="index.css" rel="stylesheet" type="text/css">
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,77 +25,92 @@
     
     <body>
     
-        <header>
+        <!-- <header>
             <nav>
-                <a href="#tab_index"><b>MAIN</b></a>
-                <a href="#tab_publications"><b>PUBLICATIONS</b></a>
-                <a href="#tab_research"><b>RESEARCH</b></a>
-                <a href="#tab_talks"><b>TALKS</b></a>
-                <a href="#tab_teaching"><b>TEACHING</b></a>
-                <a href="#tab_misc"><b>MISC</b></a>
+                <ul style="border-radius:1em;">
+                    <li>
+                        <a href="#tab_index"><b>MAIN</b></a>
+                    </li>
+                    <li>
+                        <a href="#tab_publications"><b>PUBLICATIONS</b></a>
+                    </li>
+                    <li>
+                        <a href="#tab_research"><b>RESEARCH</b></a>
+                    </li>
+                    <li>
+                        <a href="#tab_talks"><b>TALKS</b></a>
+                    </li>
+                    <li>
+                        <a href="#tab_teaching"><b>TEACHING</b></a>
+                    </li>
+                    <li>
+                        <a href="#tab_misc"><b>MISC</b></a>
+                    </li>
+                </ul>
             </nav>
-        </header>
+        </header> -->
         
         
-        <section id="tab_index">
+        <section id="tab_index" style="flex-grow:100">
             
-            <div class="mycontainer"> <!-- For text and image -->
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; margin: 0px auto; width:100%; padding:0em; text-align:left;">
                     
-                <div>
-                    
-                    <h1>Martin Licht</h1>
-                        
-                    <h3>Bernoulli Instructor at EPFL, Switzerland</h3>
-            
-                    <div class="mycontainer" style="justify-content: flex-start;">
-                        
-                        <ul class="fa-ul" style="line-height:1.5; margin: 1.5em">
-                            <li><a style="text-decoration:none" href="mailto:martin.licht@epfl.ch"><i class="fa-li fa fa-paper-plane"></i>martin.licht@epfl.ch</a></li>
-                            <li><i class="fa-li fa fa-map-marker"></i> Lausanne, Switzerland</li>
-                            <li><a style="text-decoration:none" href="https://scholar.google.com/citations?user=VYdD2IIAAAAJ&hl=en"><i class="ai-li ai ai-google-scholar"></i> Google Scholar</a></li>
-                            <li><a style="text-decoration:none" href="https://www.github.com/martinlicht"><i class="fa-li fa fa-github"></i> Github</a></li>
-                            <!-- <li><a style="text-decoration:none" href="https://www.linkedin.com/in/YOURNAMEHERE"><i class="fa-li fa fa-linkedin"></i> LinkedIn</a></li> -->
-                            <!-- <li><a style="text-decoration:none" href="https://orcid.org/0000-0002-7675-2255"><i class="ai-li ai ai-orcid"></i> Orcid (CHECK THAT IS ME)</a></li> -->
-                        </ul> 
-                        
-                        <ul class="fa-ul" style="margin: 1.5em">
-                            <li><i class="fa-li fa fa-envelope"></i>
-                                Martin Licht
-                                <br>
-                                EPFL SB MATH MATH-GE 
-                                <br>
-                                Station 8
-                                <br>
-                                CH-1015
-                                <br>
-                                Switzerland
-                            </li>
-                        </ul>
+                <div style="vertical-align:top; width:46%; padding-top: 0.0em; padding-bottom: 0.0em; padding-left: 0.0em; padding-right: 1em; text-align:left">
 
+                        <h1>Martin Licht</h1>
+                        
+                        <h3>Bernoulli Instructor at EPFL, Switzerland</h3>
+                        
+                        
+
+                        <div style="display: flex; flex-direction: column;">
+                            <ul class="fa-ul" style="line-height:1.5">
+                                <li><a style="text-decoration:none" href="mailto:martin.licht@epfl.ch"><i class="fa-li fa fa-paper-plane"></i>martin.licht@epfl.ch</a></li>
+                                <li><i class="fa-li fa fa-map-marker"></i> Lausanne, Switzerland</li>
+                                <li><a style="text-decoration:none" href="https://scholar.google.com/citations?user=VYdD2IIAAAAJ&hl=en"><i class="ai-li ai ai-google-scholar"></i> Google Scholar</a></li>
+                                <li><a style="text-decoration:none" href="https://www.github.com/martinlicht"><i class="fa-li fa fa-github"></i> Github</a></li>
+                                <!-- <li><a style="text-decoration:none" href="https://www.linkedin.com/in/YOURNAMEHERE"><i class="fa-li fa fa-linkedin"></i> LinkedIn</a></li> -->
+                                <!-- <li><a style="text-decoration:none" href="https://orcid.org/0000-0002-7675-2255"><i class="ai-li ai ai-orcid"></i> Orcid (CHECK THAT IS ME)</a></li> -->
+                            </ul> 
+                            
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-envelope"></i>
+                                    Martin Licht
+                                    <br>
+                                    EPFL SB MATH MATH-GE 
+                                    <br>
+                                    Station 8
+                                    <br>
+                                    CH-1015
+                                    <br>
+                                    Switzerland
+                                </li>
+                            </ul>
+
+                        </div>
+                        
                     </div>
-                    
-                </div>
 
-                <div style="text-align:right;">
-                    <img src="headshot.jpg" style="width:100%; height: auto; max-width: 15em; max-height: 100%; border-radius: 10%" alt="Martin W. Licht">
-                </div>
+                    <div style="width:50%; padding-bottom: 0.0em; padding-left: 1.0em; padding-right: 0em; text-align:right">
+                        <img src="headshot.jpg" style="width:50%; height: auto; max-width: 100em; max-height: 100%; border-radius: 10%;" alt="Martin W. Licht">
+                    </div>
               
             </div>
 
         </section>
         <section id="tab_cv">
         
-        <p style="text-align: justify">
+        <p>
             I am a postdoctoral researcher at the Department of Mathematics at EPFL, Switzerland. My research focuses finite element methods for partial differential equations in electromagnetism, elasticity, and relativity. 
         </p>
         
-        <p style="text-align: justify">
+        <p>
             After my PhD at the University of Oslo, I was a visiting assistant professor at UCSD. 
             I have been visitor at the University of Minnesota, Cambridge University, and Brown University.
         </p>
         
-        <p style="text-align: justify">
-            In my free time, I paint with acrylics and learn Mandarin.
+        <p>
+            In my free time, I paint with acrylics and learn Mandarin. 
         </p>
         
             <h2 id="tab_education">
