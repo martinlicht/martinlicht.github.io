@@ -376,58 +376,35 @@
                 </li>                
             </ul>
             
-            <table style="margin: 0px auto; width:100%; padding:4em; border-spacing:0em; text-align:center;">
-                <!--<col style="width:*">
-                <col style="width:*">-->
-                <tr style="vertical-align:top;">
-                    <td style="width:50%; border: 1px solid #000000; border-bottom: 1px solid #000000; border-right: none; border-left: 1px solid #000000; padding-top: 0.1em; padding-bottom: 0.1em; padding-left: 0.1em; padding-right: 0em; text-align:center">
-                        <p style="text-align:center">
-                        <img alt="Anulus" src="anulus_zeroboundary.png" id="tangential" style="width:80%; height:60%; border:0">
-                        <br />
-                        </p>
-                    </td>
-                    <td style="width:50%; border: 1px solid #000000; border-bottom: 1px solid #000000;                     border-right: 1px solid #000000; padding-top: 0.1em; padding-bottom: 0.1em; padding-left: 0.1em; padding-right: 0em; text-align:center">
-                        <p style="text-align:center">
-                        <img alt="Anulus" src="anulus_freeboundary.png" id="normal" style="width:80%; height:60%; border:0">
-                        <br />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2 style="width:100%; vertical-align:top; border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0em; padding-bottom: 0.1em; padding-left: 1.0em; padding-right: 1.0em; text-align:center">
-                        <p style="text-align:left">
-                        Discrete <a style="text-decoration:inherit; color:inherit" href="https://en.wikipedia.org/wiki/Finite_element_exterior_calculus">harmonic vector fields</a> on an anulus, 
-                        computed with a lowest-order Ned&eacute;l&eacute;c method. 
-                        Once with tangential boundary condition (left), 
-                        then with normal boundary conditions (right). 
-                        The space of harmonic vector fields reflects the non-trivial topology of the domain.
-                        </p>
-                    </td>
-                </tr>
-                <tr style="vertical-align:top;">
-                    <td colspan=2 style="width:100%; vertical-align:top; border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0em; padding-bottom: 0.1em; padding-left: 0.1em; padding-right: 0.1em; text-align:center">
-                        <p style="text-align:center">
-                        <img alt="MixedBC" src="nullspace2.png" id="mixedbcnullspace" style="width:80%; height:60%; border:0">
-                        <br />
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan=2 style="width:100%; vertical-align:top; border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0em; padding-bottom: 0.1em; padding-left: 1.0em; padding-right: 1.0em; text-align:center">
-                        <p style="text-align:left">
-                        Discrete <a style="text-decoration:inherit; color:inherit" href="https://en.wikipedia.org/wiki/Finite_element_exterior_calculus">harmonic vector fields</a> on a square subject to mixed boundary conditions: 
-						we impose tangential boundary conditions along the middle parts of the four boundary faces 
-						and normal boundary conditions near the corners. 
-						<br />
-						<br />
-						Even though the domain is simply connected, the space of harmonic vector fields is non-trivial. Its dimension is the first relative Betti number of the domain, which equals 3 in this example. 
-						<br />
-						<br />
-						The low elliptic regularity of the vector Laplace equation in the presence of mixed boundary conditions is apparent.
-                        </p>
-                    </td>
-                </tr>
-            </table>
+            <div style="padding:2em; border-radius:1em;background-color:rgb(251, 255, 225); text-align:center">
+                <img alt="MixedBC" src="nullspace2.png" id="mixedbcnullspace" style="width:80%; height:60%; border:0">
+                <p style="text-align:justify">
+                    Discrete <a style="text-decoration:inherit; color:inherit" href="https://en.wikipedia.org/wiki/Finite_element_exterior_calculus">harmonic vector fields</a> on a square subject to mixed boundary conditions: 
+                    we impose tangential boundary conditions along the middle parts of the four boundary faces 
+                    and normal boundary conditions near the corners. 
+                    <br />
+                    <br />
+                    Even though the domain is simply connected, the space of harmonic vector fields is non-trivial. Its dimension is the first relative Betti number of the domain, which equals 3 in this example. 
+                    <br />
+                    <br />
+                    The low elliptic regularity of the vector Laplace equation in the presence of mixed boundary conditions is apparent.
+                </p>
+            </div>
+            <br />    
+            <div style="padding:2em; border-radius:1em;background-color:rgb(251, 255, 225); text-align:center">
+                
+                <div style="display:flex; flex-direction: row; flex-wrap:wrap; justify-content: space-around;">
+                <img alt="Anulus" src="anulus_zeroboundary.png" id="tangential" style="width:40%; height:auto; border:0">
+                <img alt="Anulus" src="anulus_freeboundary.png" id="normal" style="width:40%; height:auto; border:0">
+                </div>
+                <p style="text-align:justify">
+                    Discrete <a style="text-decoration:inherit; color:inherit" href="https://en.wikipedia.org/wiki/Finite_element_exterior_calculus">harmonic vector fields</a> on an anulus, 
+                    computed with a lowest-order Ned&eacute;l&eacute;c method. 
+                    Once with tangential boundary condition (left), 
+                    then with normal boundary conditions (right). 
+                    The space of harmonic vector fields reflects the non-trivial topology of the domain.
+                </p>                
+            </div>
        </section>
        <section id="tab_talks">
             
