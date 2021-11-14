@@ -141,7 +141,13 @@
         
         <footer class="flex-item">
                 <i>
-                  Last Update: January 6, 2020
+                    Last Update: 
+                    <script language="JavaScript" type="text/javascript">
+                      var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+                      var mydate = new Date( document.lastModified );
+                      document.write( months[ mydate.getMonth() ] + " " + mydate.getDate() + ", " + mydate.getFullYear() );
+                    </script>
+                    <!-- November 2, 2021 -->
                   <br />
                   <a class=tarnkappe href="./publications.html">Martin Werner Licht</a>
                   <a class=tarnkappe href="https://arxiv.org/abs/1710.06868">Martin Werner Licht</a>

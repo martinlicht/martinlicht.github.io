@@ -1,8 +1,10 @@
-<!--65N30
+<!--
+65N30
 65N50
 68W10
 49Q15
-65Y05-->
+65Y05
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -603,7 +605,14 @@
         
         <footer>
                 <i>
-                  Last Update: October 18, 2021<br>
+                    Last Update: 
+                    <script language="JavaScript" type="text/javascript">
+                      var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+                      var mydate = new Date( document.lastModified );
+                      document.write( months[ mydate.getMonth() ] + " " + mydate.getDate() + ", " + mydate.getFullYear() );
+                    </script>
+                    <!-- October 18, 2021 -->
+                  <br>
                   <a class="tarnkappe" href="publications.html">Martin Werner Licht</a>
                   <a class="tarnkappe" href="https://arxiv.org/abs/1710.06868">Martin Werner Licht</a>
                   <a class="tarnkappe" href="https://arxiv.org/abs/1612.02756">Martin Werner Licht</a>
