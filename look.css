@@ -1,39 +1,110 @@
+
+
     
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    
+    margin: auto auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 80rem;
+    min-width: 22rem;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    }
+
+header section footer {
+    order: 0;
+    flex: 1 1 auto;
+    align-self: stretch;
+    }
+
+
+
+
+
+
+
+
     /* Hintergrundfarbe und allgemeine schrift */
     
     body {
         font-family: Helvetica, sans-serif;
         background-color: #E8E8E8; /* seite hintergrund */
+        max-width: 1vw;
     }
     
     
-    /* Kantenstil fuer alle relevanten elemente */
+    /* Kantenstil und Distanzen fuer alle relevanten elemente */
     
     header
     {    
-        /*border-radius: 1.5rem 1.5rem 0.0rem 0.0rem;*/
-        border-radius: 0rem 0rem 0.0rem 0.0rem;
-        border-width: 0.0rem; /* 5px; */
+        margin-top:    0.0rem; 
+        margin-bottom: 0.3125rem; 
+        margin-left:   0.0rem; 
+        margin-right:  0.0rem; 
+        
+        border-width: 0.125rem; 
         border-style: solid;
         
-        margin-bottom: 0.3125rem; /* 5px; */
-        
         padding: 0rem; 
-        padding-left: 0rem;
-        padding-right: 0rem;
+
+        background: #FFFFFF; /* background: #FFDDC9; header hintergrund */
+        border-color: #31D1F1; /* #FF6F1B header kante */
+
+        border-radius: 1em
         
     }
     
     section
     {    
-        border-radius: 0rem 0rem 0.0rem 0rem;
-        border-width: 0.0rem; /* 5px; */
-        border-style: solid;
-        margin-top: 0.3125rem; /* 5px; */
-        margin-bottom: 0.3125rem; /* 5px; */
-        padding: 0.625rem; /* 10px; */
-        padding: 2.5rem 3.85rem; /* 80px 120px; */
         
+        margin-top:    0.3125rem;
+        margin-bottom: 0.3125rem;
+        margin-left:   0.0rem;
+        margin-right:  0.0rem;
+        
+        padding-top:    2.5rem; 
+        padding-bottom: 2.5rem; 
+        padding-left:   3.85rem; 
+        padding-right:  3.85rem; 
+        
+        background: #FFFFFF; /* section hintergrund - #F8F8F8*/
+        border-color: #25AAA0; /* section kante */
+
+        border-radius: 1em
+
+    }
+
+    section {
+        flex: 1 100%;
+    
+        /* flex: 3 1 0%; */
+        flex-grow: 3;
+        flex-shrink: 1;
+        flex-basis: 0;
     }
     
     
@@ -42,7 +113,12 @@
 @media all and (max-width: 70rem) {
     
     section {
-        padding: 1rem 2rem; 
+
+        padding-top:    1rem; 
+        padding-bottom: 1rem; 
+        padding-left:   2rem; 
+        padding-right:  2rem;
+        
     }
 
 }
@@ -51,48 +127,25 @@
     
     footer
     {    
-        border-radius: 0.0rem 0.0rem 1.5rem 1.5rem;
-        border-width: 0.0rem; /* 5px; */
-        border-style: solid;
-        margin-top: 0.3125rem; /* 5px; */
-        padding: 0.625rem; /* 10px; */ 
-        padding-left: 1.925rem; /* 30px; */ 
-        padding-right: 1.925rem; /* 30px; */ 
-    }
-    
-    /* Elementfarben und Kantenfarben */
-    
-    header {
-        background: #FFFFFF; /* background: #FFDDC9; header hintergrund */
-        border-color: #31D1F1; /* #FF6F1B header kante */
-    }
-    
-    header.languages {
-        background: #FFFFFF; /* background: #FFDDC9; header hintergrund */
-        border-color: #FF973A; /* #FF6F1B header kante */
-    }
-    
-    section {
-        background: #FFFFFF; /* section hintergrund - #F8F8F8*/
-        border-color: #25AAA0; /* section kante */
-/*         font-size: large; */
-    }
-    
-    section.sunny{
-        background: #FFFFFF; /* background: #FFDDC9; header hintergrund */
-        border-color: #FF6F1B; /* #FF6F1B header kante */
-    }
+        margin-top:    0.3125rem;
+        margin-bottom: 0.0rem; 
+        margin-left:   0.0rem; 
+        margin-right:  0.0rem; 
 
-    table.autonomous
-    {
-        background: #FFFFFF; /* section hintergrund - #F8F8F8*/
-        border-color: #E50091; /* section kante */
-    }
-    
-    footer {
+        padding-top:    0.625rem; 
+        padding-bottom: 0.625rem; 
+        padding-left:   1.925rem;
+        padding-right:  1.925rem;
+
         background: #BDFFFC; /* footer hintergrund */
         border-color: #25AAA0; /* footer kante */    
+
+        border-radius: 1em;
+
+        text-align: right;
     }
+
+    
     
     
     /* Navigationsleiste */
@@ -103,7 +156,7 @@
         padding: 0rem;
     
         border-radius: 0rem 1.5rem 0.0rem;
-        border-width: 0.0rem; /* 5px; */
+        border-width: 0.0rem;
         border-style: solid;
         border-style: none;
     }
@@ -129,6 +182,59 @@
         border-style: none;
         border-color: #BDFFFC;
     }
+
+
+    nav ul {
+        list-style-type: none;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        display: flex;
+        flex: 1 1 100%;
+        
+        
+    }
+        
+    nav ul {
+        flex-direction: row;
+    }
+
+@media all and (max-width: 50em) {
+    
+    nav ul {
+        flex-direction: column;
+    }
+
+}
+
+
+
+
+
+/* https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet */
+/* https://msdn.microsoft.com/en-us/library/hh771830(v=vs.85).aspx */
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: black-on-white), (-ms-high-contrast: white-on-black), (-ms-high-contrast: active) {
+     
+    nav ul {
+        
+        flex-direction: row;
+        
+    }
+    
+}
+
+
+    nav li {
+        list-style-type: none;
+        flex: 1 1 auto;
+        display: inline;
+    }
+
+
+
+
+
+
     
     nav a
     {    
@@ -174,71 +280,9 @@
         
     }
     
-    nav.languages a
-    {    
-        padding-left: 0.8rem; /* 50px; */
-        padding-right: 0.8rem; /* 50px; */
-        padding-top: 0.32rem; /* 20px; */ 
-        padding-bottom: 0.32rem; /* 20px; */ 
-        margin: 0rem;
-        display: block;
-    
-        background: #FFDDC9; /* #FFDDC9; navigationsanker hintergrund */
-        
-        border-radius: 0rem 0rem 0.0rem;
-        border-width: 0rem;
-        border-style: solid;
-        border-color: #FF973A; /* FF6F1B navigationsanker kante */
-        text-align: center;
-        text-decoration: none;
-        font-size: 18pt;
-    }
-
-    nav.languages a:hover {
-        background-color: #FF973A; /* 76DEF3 FF6F1B navigationsanker hintergrund hover = navigationsanker kante */
-        cursor: pointer;
-    }
-
-    nav.languages a:link {
-        color: black; /* #E50091; */
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    nav.languages a:visited {
-        color: black;/* #25aaa0; */
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    nav.languages a:link:active, 
-    nav.languages a:visited:active {
-        color: black;
-        text-decoration: none;
-        
-    }
     
     
     
-    
-    /* General hyperlinks */
-    
-    a:hover {
-        
-    }
-
-    a:link {
-        
-    }
-
-    a:visited {
-       
-    }
-
-    a:link:active, 
-    a:visited:active {
-        
-    }
     
     a.tarnkappe {
       opacity: 0;
@@ -247,33 +291,21 @@
     }
     
     
-    
-    /* Bild im Hauptteil */
-    
-    section img.hauptbild
-    {
-      border-radius: 0%;
-      max-width:50%;
-      height:auto;
-      float: right;
-    }
-
-    /* Item List im Hauptteil */
 
     
+/*
 
-    
-/*@media all and (max-width: 60rem) {
+@media all and (max-width: 60rem) {
     
     section img.hauptbild{
         max-width:35%;
         float: right;
     }
 
-}*/
+}
 
 @media all and (max-width: 50rem) {
-    
+
     section img.hauptbild{
         max-width:0%;
         float: none;
@@ -281,5 +313,8 @@
     }
 
 }
+
+*/
+
 
 
