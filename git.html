@@ -33,21 +33,25 @@
         <article style="background-color: rgb(251, 255, 225)">
             <h2>How to use Git with private repositories</h2>
 
-            This site will explain you how to use private repositories on Github.  <!-- and operate with them from Windows. -->
-            This is done in several independent steps.
-
-            <!-- <ul class="toc">
-                <li><a href="#article-1">Creating the SSH key pair</a></li>
-                <li><a href="#article-2">Installing GitBash for Windows</a></li>
-                <li><a href="#article-3">Setting up the key server</a></li>
-            </ul> -->
+            In what follows, you learn how to access private repositories on Github. 
+            This is can only be done via SSH connections, 
+            which requires a bit of a low-level setup on your machine. 
+            Public repositories can be accessed via SSH or the more traditional HTPPS, 
+            so this does not require any special setup.
+            
+            <ul class="toc">
+                <li><a href="#article-1">Creating the SSH key pair and setting the repo URL</a></li>
+                <li><a href="#article-2">Special instructions for Git Bash</a></li>
+                <!-- <li><a href="#article-3">Setting up the key server</a></li> -->
+            </ul>
         </article>
         
         <article id="article-1">
-            <!-- <h1>Creating the SSH key pair and setting the repo URL</h1> -->
+            <h1>Creating the SSH key pair and setting the repo URL</h1>
             <ol>
                 <li style="margin-top: 1em;">
-                    The following should work on a Linux shell and any other Unix-like shell, such as Cygwin or Git Bash.
+                    The following steps should work on any Linux shell and any other Unix-like shell, 
+                    such as Cygwin or Git Bash.
                 </li>
                 <li style="margin-top: 1em;">
                     First things first, we create new pair of private and public keys to be used for Github.
@@ -57,12 +61,12 @@
                     <br />
                     <br />
                     Instead of an RSA key pair, you might opt to use an ed25519 key pair instead.
-                    This type of key pair is newer and some older servers may not support it,
-                    but Github does and they are faster and safer.
-                    In that case, you change the previous line to:
+                    This new type of key pair is faster and safer. 
+                    Some older servers may not support it, but Github does.
+                    If that is your choice, you change the previous line to:
                     <pre><code>ssh-keygen -t ed25519 -f ~/.ssh/githubkey</code></pre>
                     In either case, the command <code>ssh-keygen</code> will ask you for an optional passphrase. 
-                    You just leave them blank. 
+                    You may just leave them blank. 
                     Otherwise, any SSH connection will need you to enter the passphrase as an additional security feature.
                 </li>
                 <li style="margin-top: 1em;">
@@ -78,14 +82,16 @@
                     and copy the content of <code>githubkey.pub</code> into the <code>Key</code> textfield.
                 </li>
                 <li style="margin-top: 1em;">
+                    We need an SSH agent running in the background. 
                     On Linux, the ssh agent should already be running in the background.
                     Regardless, if the ssh agent is not running yet, 
-                    then you can execute 
+                    then you simply execute 
                     <pre><code>eval `ssh-agent -s`</code></pre>
                     to get the agent started in the background of your current shell.
                 </li>
                 <li style="margin-top: 1em;">
-                    Once the SSH agent is running, we can add our private key:
+                    Once the SSH agent is running in the background, 
+                    we add our private key:
                     <pre><code>ssh-add ~/.ssh/githubkey</code></pre>
                 </li>
                 <li style="margin-top: 1em;">
@@ -98,28 +104,31 @@
                 <li style="margin-top: 1em;">
                     Either you already have a repository on Github that you want to clone,
                     or you already have a local repo that you want to connect.
-                    Let us consider the former case first and then the latter case.
+                    Let us address the former case first and then the latter case.
                     <br />
                     <br />
                     You can clone an existing repo from Github into your current working directory via 
                     <pre><code>git clone git@github.com:username/your-repository.git</code></pre>
-                    Note that your username for SSH login purposes is simply <code>git</code>, somewhat counterintuitively. 
-                    Everything is complete now!
+                    Note that your username for SSH login purposes is simply <code>git</code>, 
+                    which is perhaps somewhat counterintuitively. 
+                    Now you are all set!
                 </li>
                 <li style="margin-top: 1em;">
-                    If you already have a local Git repository, 
-                    then you must indicate to Git how and where to reach the remote repository. 
+                    Now we address the case where you already have a local Git repository. 
+                    You must then indicate to Git how and where to reach the remote repository on Github. 
                     First, make sure you are in the directory of your local repo:
                     <pre><code>cd /path/to/your/repo</code></pre>
                     You see the known remote repositories and their urls via
                     <pre><code>git remote -v</code></pre>
                     If you already see a line like 
-                    <pre><code>name_of_repo git@github.com:username/your-repository.git</code></pre>
+                    <pre><code>nickname_of_remote_repo git@github.com:username/your-repository.git</code></pre>
                     then you are good to go. Otherwise, you can either add the new remote repository via
-                    <pre><code>git remote add name_of_repo git@github.com:username/your-repository.git</code></pre>
+                    <pre><code>git remote add nickname_of_remote_repo git@github.com:username/your-repository.git</code></pre>
                     or you change the address of an existing one via 
-                    <pre><code>git remote set-url name_of_repo git@github.com:username/your-repository.git</code></pre>
-                    Please pick the right name instead of <code>name_of_repo</code>. The most common name is <code>origin</code>.
+                    <pre><code>git remote set-url nickname_of_remote_repo git@github.com:username/your-repository.git</code></pre>
+                    Please pick the right name instead of <code>nickname_of_remote_repo</code>. 
+                    The most common name is <code>origin</code> but you might have chosen something else.
+                    Now you are all set!
                 </li>
                 <li style="margin-top: 1em;">
                     Now you are all set!
@@ -128,22 +137,30 @@
             </ol>
         </article>
 
-        <!-- <article id="article-3">
-            <h1>Installing GitBash for Windows</h1>
+        <article id="article-2">
+            <h1>Special instructions for Git Bash</h1>
             <ol>
                 <li>
-                    test
+                    The above instructions apply just the same when you use Git Bash. 
+                    However, this is one of the settings where the ssh agent is not started in the background.
+                    We therefore need it to do by ourselves:
+                    <pre><code>eval 'ssh-agent -s' && ssh-add ~/.ssh/githubkey</code></pre>
                 </li>
                 <li>
-                    test
+                    It would be much more convenient if that command were executed on every login.
+                    Git Bash uses <code>profile</code> for any commands to be executed on login.
+                    Let us first make sure it exists:
+                    <pre><code>cd<br />touch .profile</code></pre>
+                    You can open that file by any editor of choice and add 
+                    <pre><code>eval 'ssh-agent -s' && ssh-add ~/.ssh/githubkey</code></pre>
                 </li>
                 <li>
-                    <code>Test</code>
+                    Now the ssh agent will be started whenever you open a Git Bash shell and the requested keys will be added automatically.
                 </li>
             </ol>
         </article>
 
-        <article id="article-3">
+        <!-- <article id="article-3">
             <h1>Setting up the key server</h1>
             <ol>
                 <li>
