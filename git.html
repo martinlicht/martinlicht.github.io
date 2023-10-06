@@ -1,0 +1,186 @@
+
+<!doctype html>
+<html lang="de">
+    
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="keywords" content="Martin Licht, Martin Werner Licht, Finite Element Exterior Calculus, Smoothed Projection">
+        <meta name="author" content="Martin Licht">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+        
+        <link href="index.css" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title>
+            Martin W. Licht - Git tricks
+        </title>
+
+        <style>
+            pre { background-color: rgb(251, 255, 225); padding: 1em; }
+        </style>
+    </head>
+    
+    <body class="flex-container">
+    
+        <header>
+            <nav>
+                <a href="index.html"><b>HOME</b></a>
+            </nav>
+        </header>
+
+        <article style="background-color: rgb(251, 255, 225)">
+            <h2>How to use Git with private repositories</h2>
+
+            This site will explain you how to use private repositories on Github.  <!-- and operate with them from Windows. -->
+            This is done in several independent steps.
+
+            <!-- <ul class="toc">
+                <li><a href="#article-1">Creating the SSH key pair</a></li>
+                <li><a href="#article-2">Installing GitBash for Windows</a></li>
+                <li><a href="#article-3">Setting up the key server</a></li>
+            </ul> -->
+        </article>
+        
+        <article id="article-1">
+            <!-- <h1>Creating the SSH key pair and setting the repo URL</h1> -->
+            <ol>
+                <li style="margin-top: 1em;">
+                    The following should work on a Linux shell and any other Unix-like shell, such as Cygwin or Git Bash.
+                </li>
+                <li style="margin-top: 1em;">
+                    First things first, we create new pair of private and public keys to be used for Github.
+                    <pre><code>ssh-keygen -t rsa -b 4096 -f ~/.ssh/githubkey</code></pre>
+                    This line will generate two files <code>githubkey</code> and <code>githubkey.pub</code> within the <code>.ssh</code> subdirectory of your home directory.
+                    The first file is the private key and the second file is the public key.
+                    <br />
+                    <br />
+                    Instead of an RSA key pair, you might opt to use an ed25519 key pair instead.
+                    This type of key pair is newer and some older servers may not support it,
+                    but Github does and they are faster and safer.
+                    In that case, you change the previous line to:
+                    <pre><code>ssh-keygen -t ed25519 -f ~/.ssh/githubkey</code></pre>
+                    In either case, the command <code>ssh-keygen</code> will ask you for an optional passphrase. 
+                    You just leave them blank. 
+                    Otherwise, any SSH connection will need you to enter the passphrase as an additional security feature.
+                </li>
+                <li style="margin-top: 1em;">
+                    You can inspect the content of the public key file:
+                    <pre><code>cat ~/.ssh/githubkey.pub</code></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    Now you go the list of SSH keys for your Github account. 
+                    You find them at:
+                    https://github.com/settings/keys.
+                    Click on the button <code>New SSH key</code>.
+                    Now you enter an name for the new key 
+                    and copy the content of <code>githubkey.pub</code> into the <code>Key</code> textfield.
+                </li>
+                <li style="margin-top: 1em;">
+                    On Linux, the ssh agent should already be running in the background.
+                    Regardless, if the ssh agent is not running yet, 
+                    then you can execute 
+                    <pre><code>eval `ssh-agent -s`</code></pre>
+                    to get the agent started in the background of your current shell.
+                </li>
+                <li style="margin-top: 1em;">
+                    Once the SSH agent is running, we can add our private key:
+                    <pre><code>ssh-add ~/.ssh/githubkey</code></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    Let us test the SSH connection by trying shell access on Github:
+                    <pre><code>ssh -T git@github.com</code></pre>
+                    Github will confirm that we can authenticate. 
+                    You should receive the message
+                    <pre><code>Hi username! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    Either you already have a repository on Github that you want to clone,
+                    or you already have a local repo that you want to connect.
+                    Let us consider the former case first and then the latter case.
+                    <br />
+                    <br />
+                    You can clone an existing repo from Github into your current working directory via 
+                    <pre><code>git clone git@github.com:username/your-repository.git</code></pre>
+                    Note that your username for SSH login purposes is simply <code>git</code>, somewhat counterintuitively. 
+                    Everything is complete now!
+                </li>
+                <li style="margin-top: 1em;">
+                    If you already have a local Git repository, 
+                    then you must indicate to Git how and where to reach the remote repository. 
+                    First, make sure you are in the directory of your local repo:
+                    <pre><code>cd /path/to/your/repo</code></pre>
+                    You see the known remote repositories and their urls via
+                    <pre><code>git remote -v</code></pre>
+                    If you already see a line like 
+                    <pre><code>name_of_repo git@github.com:username/your-repository.git</code></pre>
+                    then you are good to go. Otherwise, you can either add the new remote repository via
+                    <pre><code>git remote add name_of_repo git@github.com:username/your-repository.git</code></pre>
+                    or you change the address of an existing one via 
+                    <pre><code>git remote set-url name_of_repo git@github.com:username/your-repository.git</code></pre>
+                    Please pick the right name instead of <code>name_of_repo</code>. The most common name is <code>origin</code>.
+                </li>
+                <li style="margin-top: 1em;">
+                    Now you are all set!
+                </li>
+                
+            </ol>
+        </article>
+
+        <!-- <article id="article-3">
+            <h1>Installing GitBash for Windows</h1>
+            <ol>
+                <li>
+                    test
+                </li>
+                <li>
+                    test
+                </li>
+                <li>
+                    <code>Test</code>
+                </li>
+            </ol>
+        </article>
+
+        <article id="article-3">
+            <h1>Setting up the key server</h1>
+            <ol>
+                <li>
+                    <code>eval `ssh-agent -s` && ssh-add ~/.ssh/githubkey_ed25519</code>
+                </li>
+                <li>
+                    test
+                </li>
+                <li>
+                    test
+                </li>
+            </ol>
+        </article> -->
+
+        
+        <footer class="flex-item">
+                <i>
+                    Last Update: 
+                    <script language="JavaScript" type="text/javascript">
+                      var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+                      var mydate = new Date( document.lastModified );
+                      document.write( months[ mydate.getMonth() ] + " " + mydate.getDate() + ", " + mydate.getFullYear() );
+                    </script>
+                    <!-- November 2, 2021 -->
+                  <br />
+                  <a class=tarnkappe href="./publications.html">Martin Werner Licht</a>
+                  <a class=tarnkappe href="https://arxiv.org/abs/1710.06868">Martin Werner Licht</a>
+                  <a class=tarnkappe href="https://arxiv.org/abs/1612.02756">Martin Werner Licht</a>
+                  Martin W. Licht
+                </i>
+                <p>
+                    <a href="https://validator.w3.org/check?uri=referer">
+                        <img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88" />
+                    </a>
+                </p>
+        </footer>
+    
+    </body>
+    
+</html>
