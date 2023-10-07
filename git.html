@@ -99,17 +99,10 @@
                     to get the agent started in the background of your current shell.
                 </li>
                 <li style="margin-top: 1em;">
-                    In some environments, it is possible to skip the following step.
-                    <br>
-                    <br>
-                    Once the SSH agent is running in the background, 
-                    we add our private key:
-                    <pre><code>ssh-add ~/.ssh/githubkey</code></pre>
-                    <br>
-                    <br>
                     In a modern Linux environment, 
-                    the SSH agent may already run in the background and look for SSH keys inside the <code>.ssh</code> directory on a per-use basis. 
-                    In that case, there is no need to execute this step. 
+                    the SSH agent already looks for SSH keys inside the <code>.ssh</code> directory on a per-use basis. 
+                    In other environments, we need to manually add the SSH key:
+                    <pre><code>ssh-add ~/.ssh/githubkey</code></pre>
                 </li>
                 <li style="margin-top: 1em;">
                     Let us test the SSH connection by trying shell access on Github:
