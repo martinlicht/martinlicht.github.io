@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="de">
+<html lang="en">
     
     <head>
         <meta charset="utf-8">
@@ -34,9 +34,13 @@
         <article style="background-color: rgb(251, 255, 225)">
             <h2>How to use Git with private repositories</h2>
 
-            In what follows, you learn how to access private repositories on Github. 
-            This is can only be done via SSH connections, 
-            which requires a bit of a low-level setup on your machine. 
+            This guide will show you how to access private repositories on Github. 
+            This is not as straight-forward as it used to be 
+            since Github has made SSH mandatory for accessing private repositories a few years ago.
+            So some low-level set up is required to make this work. 
+            I found the official documentation by Github to be lacking a few details,
+            which is why I have written this guide. 
+
             Public repositories can be accessed via SSH or the more traditional HTTPS, 
             so this does not require any special setup.
             
@@ -216,7 +220,7 @@
         <footer class="flex-item">
                 <i>
                     Last Update: 
-                    <script language="JavaScript" type="text/javascript">
+                    <script language="JavaScript">
                       var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
                       var mydate = new Date( document.lastModified );
                       document.write( months[ mydate.getMonth() ] + " " + mydate.getDate() + ", " + mydate.getFullYear() );
@@ -228,8 +232,8 @@
                   Martin W. Licht
                 </i>
                 <p>
-                    <a href="https://validator.w3.org/check?uri=referer">
-                        <img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88">
+                    <a href="https://validator.w3.org/check?uri=martinlicht.github.io/git.html" target="_blank">
+                        <img src="https://www.w3.org/Icons/valid-html401.png" alt="Valid XHTML 1.0!" height="31" width="88">
                     </a>
                 </p>
         </footer>
