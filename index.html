@@ -427,6 +427,46 @@
             </ul>
             
             <div style="padding:2em; border-radius:1em;background-color:rgb(251, 255, 225); text-align:center">
+                <h2>Why do we need edge elements?</h2>
+                <p style="text-align:justify">
+                    Edge elements are necessary for physically correct finite element approximations in numerical electromagnetism. 
+                    This inevitable leads to the use of mixed finite element methods. 
+                    By contrast, finite element methods that naively use Lagrange elements for the coordinates and minimize energy functionals stably converge to <b>incorrect</b> solutions.
+                    This is catastrophic because the inconsistency may not be apparent to every user of finite element methods.
+                </p>                
+                <div style="display:flex; flex-direction: row; flex-wrap:wrap; justify-content: space-between; flex-wrap: wrap">
+                    <div style="flex: 1; padding: 1em; box-sizing: border-box">
+                        <div style="display: flex; flex-direction: row; align-content:start">
+                            <img alt="ExampleWhitney" src="example_whitney.png" id="whitney"    style="width:100%; height:auto; border:0; padding: 1em; box-sizing: border-box">
+                        </div>
+                        <div>
+                            <p style="text-align:left">
+                                The finite element solution using edge elements correctly resolves the corner singularity of the problem. 
+                                The plot depicts the vector field variable and the magnitude of the solution.
+                                As the mesh is refined, the finite element approximation converges to the physically correct solution. 
+                            </p>
+                        </div>
+                    </div>
+                    <div style="flex: 1; padding: 1em; box-sizing: border-box">
+                        <div style="display: flex; flex-direction: row; align-content:start">
+                            <img alt="ExampleLagrange" src="example_lagrange.png" id="lagrange" style="width:100%; height:auto; border:0; padding: 1em; box-sizing: border-box">
+                        </div>
+                        <div>
+                            <p style="text-align:left">
+                                A boilerplate finite element method, simply using Lagrange elements for each coordinate,
+                                converges to an incorrect solution as the mesh is refined. 
+                                While this vector field may look permissible to the untrained eye, 
+                                it is qualitatively different from the correct solution.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div style="display:flex; flex-direction: row; flex-wrap:wrap; justify-content: space-around;"></div> -->
+                
+            </div>
+            <br>    
+            <div style="padding:2em; border-radius:1em;background-color:rgb(251, 255, 225); text-align:center">
+                <h2>Discrete harmonic vector fields</h2>
                 <img alt="MixedBC" src="nullspace2.png" id="mixedbcnullspace" style="width:80%; height:60%; border:0">
                 <p style="text-align:justify">
                     Discrete <a style="text-decoration:inherit; color:inherit" href="https://en.wikipedia.org/wiki/Finite_element_exterior_calculus">harmonic vector fields</a> on a square subject to mixed boundary conditions: 
@@ -457,13 +497,14 @@
             </div>
             <br>    
             <div style="padding:2em; border-radius:1em;background-color:rgb(251, 255, 225); text-align:center">
+                <h2>Complexity of adaptive mesh refinement</h2>
                 <div style="display:flex; flex-direction: row; flex-wrap:wrap; justify-content: space-around;">
                     <img alt="RoundCoarse" src="rounddisk.svg" id="roundcoarse" style="width:30%; height:auto; border:0">
                     <img alt="RoundFine" src="rounddiskFine.svg" id="roundfine" style="width:30%; height:auto; border:0">
                     <img alt="RoundNVB" src="rounddiskNVB.svg" id="roundcoarse" style="width:30%; height:auto; border:0">
                 </div>
                 <p style="text-align:justify">
-                    Triangulations of an approximate sphere. My research has led to the first completely combinatiorial amortized complexity estimate for repeated newest vertex bisection. Newest vertex bisection is a key component in the mesh refinement algorithm  of adaptive finite element methods. 
+                    Triangulations of an approximate sphere. My research has led to the first completely combinatorial amortized complexity estimate for repeated newest vertex bisection. Newest vertex bisection is a key component in the mesh refinement algorithm  of adaptive finite element methods. 
                     Previous complexity estimates involved geometric quantities that lead to suboptimal estimates when the initial mesh is highly non-uniform. 
                 </p>
             </div>
@@ -531,7 +572,7 @@
                     Swiss Numerics Day 2021, EPFL, Switzerland. September 13, 2021. Talk: Local finite element approximation of Sobolev differential forms. 
                 </li>
 				<li>
-                    11th Zurich Summer School 2021: Asymptotic Methods in Phyiscal and Numerical Modelling. University of Zurich, Switzerland. August 23-27, 2021.
+                    11th Zurich Summer School 2021: Asymptotic Methods in Physical and Numerical Modelling. University of Zurich, Switzerland. August 23-27, 2021.
                     Poster: Local finite element approximation of Sobolev differential forms. 
                 </li>
 				<li>
@@ -836,7 +877,6 @@
                             <i class="ai ai-google-scholar ai-fw"></i> Google Scholar
                         </a>
 
-                        todo
                         <p>
                             <i class="fa fa-fw fa-map-marker"></i> Lausanne, Switzerland
                         </p>
