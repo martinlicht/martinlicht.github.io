@@ -104,7 +104,7 @@
         </article>
 
         <article id="article-2">
-            <h1>Installing and testing</h1>
+            <h1>Installing and testing clang and make</h1>
             <ol>
                 <li>
                     The installation begins with simply unpacking the .zip archive and transfering the folder to a convenient location. 
@@ -127,7 +127,8 @@
                 </li>
                 <li>
                     In the first list, click on <code>Path</code> and then <code>Edit...</code>.
-                    Click on <code>New</code> and enter the path the binary folder. In our example, <code>C:\llvm-mingw-20231003-msvcrt-x86_64\bin</code>. Then click <code>OK</code>.
+                    Click on <code>New</code> and enter the path of the binary folder. In our example, <code>C:\llvm-mingw-20231003-msvcrt-x86_64\bin</code>. 
+                    Then click <code>OK</code> on all open dialogues.
                 </li>
                 <li>
                     Congratulations, we should be ready now. 
@@ -148,6 +149,47 @@
                     One of word of caution: different command prompts give different priorities to different folders when looking for the command. 
                     For example, Cygwin will first look in its own internal directories for <code>gcc</code>, so if your Cygwin installations already includes GCC, then Cygwin will pick that one.
                     Typically, calling <code>make</code> in Cygwin will call the binary at <code>/usr/bin/make</code> but <code>mingw32-make</code> will be found in your Windows system.
+                </li>
+            </ol>
+        </article>
+
+        <article id="article-2">
+            <h1>Unix utilities on Windows PowerShell</h1>
+            <ol>
+                <li>
+                    One more issue concerning makefiles: 
+                    if your makefiles are developed for a Unix environment, then you may encounter difficulties when executing make on Windows. 
+                    Things will typically work fine when the shell is, say, <code>Git Bash</code>, which provides the most basic Unix utilities (such as <code>touch</code>, <code>cp</code>, and so on).
+                </li>
+                <li>
+                    However, it is desirable if we can also execute our makefile from Windows PowerShell.
+                    For example, some IDEs for Windows use PowerShell as their standard terminal. 
+                    We can to make the standard Unix tools available on PowerShell as follows, assuming that <code>Git Bash</code> has already been installed. 
+                </li>
+                <li>
+                    First, check the location of the binary files that come with Git Bash. For example, that folder might be
+                    <pre><code>C:\Program Files\Git\usr\bin\</code></pre>
+                    or whatever else is your installation folder for <code>Git Bash</code>.
+                </li>
+                <li>
+                    We once again modify the Windows path variable. 
+                    We open the launcher and enter <code>Advanced System Settings</code>.
+                    Alternatively, we open <code>Control Panel</code>, then <code>System and Security</code>, then <code>System</code>, then look for <code>Advanced System Settings</code>.
+                </li>
+                <li>
+                    Once that Windows is open, named <code>System Properties</code>, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
+                </li>
+                <li>
+                    In the first list, click on <code>Path</code> and then <code>Edit...</code>.
+                    Click on <code>New</code> and enter the path of the binary folder for <code>Git Bash</code>,
+                    as identified above. Then click <code>OK</code> on all open dialogues.
+                </li>
+                <li>
+                    Now the Unix commands that come with Git Bash should also be available in Windows PowerShell. 
+                    Congratulations, we should be ready now. 
+                    To test that, open a Windows PowerShell terminal, and type something like <code>touch --version</code>. 
+                    You should now see what you would expect on Linux as well. 
+                    Similarly, the same should now work on the classical Windows command line terminal. 
                 </li>
             </ol>
         </article>
