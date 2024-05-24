@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin's Math Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Martin's Math Page</h1>
+        <div>
+            <nav>
+                <!-- <span class="topic">I N T R O:</span> -->
+                <a id="a_start" href="#start" onclick="showSection('start')">Home</a>
+                <a id="a_whatnot" href="#whatnot" onclick="showSection('whatnot')">What Math is not!</a>
+                <a id="a_what" href="#what" onclick="showSection('what')">What is Math? Proofs!</a>
+                <a id="a_science" href="#science" onclick="showSection('science')">What is Math? Science</a>
+                <a id="a_whymath" href="#whymath" onclick="showSection('whymath')">Why Math?</a>
+            </nav>
+            <nav>
+                <!-- <span class="topic">A R E A S:</span> -->
+                <a id="a_branches" href="#branches" onclick="showSection('branches')">Specializations?</a>
+                <a id="a_analysis" href="#analysis" onclick="showSection('analysis')">Analysis</a>
+                <a id="a_algebra" href="#algebra" onclick="showSection('algebra')">Algebra</a>
+                <a id="a_complexanalysis" href="#complexanalysis" onclick="showSection('','complexanalysis')">Complex analysis</a>
+                <a id="a_diffeq" href="#diffeq" onclick="showSection('diffeq')">Differential equations</a>
+                <a id="a_numerics" href="#numerics" onclick="showSection('numerics')">Numerical simulations</a>
+                <a id="a_probability" href="#probability" onclick="showSection('probability')">Probability & Statistics</a>
+                <a id="a_topology" href="#topology" onclick="showSection('topology')">Topology</a>
+                <a id="a_numbertheory" href="#numbertheory" onclick="showSection('numbertheory')">Number theory</a>
+                <a id="a_logic" href="#logic" onclick="showSection('logic')">Logic</a>
+                <a id="a_discrete" href="#discrete" onclick="showSection('discrete')">Discrete mathematics</a>
+                <a id="a_tcs" href="#tcs" onclick="showSection('tcs')">Theoretical computer science</a>
+            </nav>
+            <nav>
+                <!-- <span class="topic">O U T R O:</span> -->
+                <a id="a_summary" href="#summary" onclick="showSection('summary')">Summary</a>
+                <a id="a_about" href="#about" onclick="showSection('about')">About</a>
+            </nav>
+        </div>
+    </header>
+    <div id="articlecontainer" class="mycontainer">
+        <article id="start" class="mysection" style="display: block">
+            <h2>Hello and welcome to my Math page!</h2>
+            <p>
+                My name is Martin, and I am pleased to invite to a little online tour through the world of mathematics. 
+                <br /><br />
+
+                A long time ago, when I was a student of math and computer science at the University of Bonn, 
+                friends and relatives often asked me:
+                <!-- <br /><br /> -->
+                
+                <blockquote>
+                    What do mathematicians do all day?
+                </blockquote>
+
+                <!-- <br /><br /> -->
+
+                It is a short that leads to a long answer. 
+                Mathematics is a specialist subject and a real answer needs more than a few sentences. 
+                <br /><br />
+
+                Years ago, this motivated me to design a small website just to address this question,
+                a little hobby project to present my fields of study to the broader public.
+                Needless to say, I also did it just for fun. 
+                <br /><br />
+
+                The original website got lost in the river of time. 
+                Out of a feeling of nostalgia for the wonderful time back then,
+                I decided to recreate this website. 
+                Of course, I have updated everything,
+                and I also decided to switch from English to German.
+                <br /><br />
+
+                I once created that website to share my excitement for mathematics. 
+                Here, 
+                you will find a collection of articles and resources that will give you insight into various aspects and branches of mathematics, and also some computer science. 
+                Whether you are a high school student, university student, or just a bit curious
+                 - I very much hope you will find interesting and helpful information here.
+                <br /><br />
+
+                Have fun browsing and learning!
+                <br /><br /><br />
+                <!-- <a href="#" class="bottom-left">Prev</a> -->
+                <a href="#whatnot" onclick="showSection('whatnot')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="whatnot" class="mysection">
+            <h2>What Math is not!</h2>
+            <p>
+                Mathematics is many interesting things, 
+                and certainly it is not only about numbers and calculations. 
+                So let us quickly move those common misconceptions out of the way!
+                <br /><br />
+
+                In primary school and later in high school, 
+                you have mainly learned arithmetic, some geometry, 
+                and how to apply numerous formulas to real world situations. 
+                It's all too easy to assume that this continues at university, 
+                and many people assume that mathematicians spend their day with numbers, calculations and perhaps statistics. 
+                <br /><br />
+
+                There is only one thing to say about this:
+                nothing could be further from the truth!
+                <br /><br />
+
+                Of course, mathematicians occasionally deal with calculations from time to time, 
+                but that does not reflect what mathematicians study and research. 
+                The everyday activities of mathematicians usually revolve much less around numbers and calculations than you might think. 
+                <br /><br />
+
+                Now, what is mathematics? Let's continue with a short summary of what mathematics is all about!
+                <br /><br /><br />
+                <a href="#start" onclick="showSection('start')" class="bottom-left">Prev</a>
+                <a href="#what" onclick="showSection('what')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="what" class="mysection">
+            <h2>What is Math? Proofs!</h2>
+            <p>
+                
+                To best understand what mathematics is about, let us have a look what mathematicians actually do.
+                <br /><br />
+                
+                Students and researchers of mathematics spend their time with logical conclusions:
+                we rigorously prove statements based on prior statements. 
+                Given statements are known or assumed to be true ("The sun is shining"), 
+                mathematicians derive new statements ("Your ice cream is gonna melt!"). 
+                <br /><br />
+
+                The heart of mathematics is synthesizing new statements from old statements. 
+                Mathematicians start with as few basic assumptions as possible, which are the so-called “axioms”. 
+                and using logical reasoning they prove more complicated statements, which are so-called “theorems”. 
+                They combine already proven facts into increasingly more complex new facts. 
+                Starting from simple assumptions, 
+                mathematicians develop far-reaching abstract formalisms.
+                <br /><br />
+
+                Of course, the objects of mathematical study 
+                are primarily related to notions that you typically associate with mathematics: 
+                numbers, geometry, and logic (rather than, say, cooking recipes).
+                Even though many research topics have a background in the sciences, 
+                some research is of purely mathematical interest:
+                mathematics for the sake of mathematics. 
+                For example, calculating the volume of a sphere in 256 dimensions might have little to no practical application, 
+                but it is a mathematically interesting nevertheless as it connects to surprisingly many different phenomena in math. 
+                <br /><br />
+
+                What stands out is the very high level of abstraction: 
+                mathematicians like to focus on general "structures" rather than specific examples. 
+                It is far more rewarding to prove abstract statements or principles, 
+                which apply across many special cases and examples at once. 
+                <br /><br />
+
+                This might sound more complicated than it is: 
+                Consider the Cartesian coordinates in two dimensions. 
+                They display the important feature that you can add two coordinate pairs (translation) and that you can multiply each coordinate pair with a number (scaling). 
+                The same features are present in three dimensions, and you easily set up this formalism for any higher dimension. 
+                Taking an even more general perspective, 
+                translation and scaling can be found in other context, such as function spaces. 
+                <br /><br />
+                
+                Mathematicians thus recognized that the fundamental properties of Cartesian coordinates  
+                also appear in other context, and thus the abstract notion of vector space emerged. 
+                Recognizing that all common general features are present in these situations,
+                mathematicians developed the notion of vector space. 
+                Let us not delve too much into the details of what vector spaces are,
+                let me just say that vector spaces support translation and scaling just like Cartesian coordinates do. 
+                Here, we see how generalization is beneficial in the long run: 
+                once a theorem is proven for vector spaces, using only the abstract formalism, 
+                it applies to all specific instances of vector spaces that you might encounter.
+                <br /><br />
+                
+                Vector spaces are an example of a mathematical structure,
+                and many more mathematical structures are the outcome of abstraction,
+                recognizing the relevant features of a specific example or situation 
+                and working out the governing abstract principles.
+                <br /><br />
+                
+                Once a theorem is proven for a certain class of structures, 
+                the theorem applies to every special case of that general structure. 
+                Thus, a single proof gives you a statement that applies in many different instances.
+                <br /><br /><br />
+                <a href="#whatnot" onclick="showSection('whatnot')" class="bottom-left">Prev</a>
+                <a href="#science" onclick="showSection('science')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="science" class="mysection" style="display: block">
+            <h2>What is Math? Science!</h2>
+            <p>
+                How does the science of mathematics relate to other sciences, such as physics and engineering?
+                <br /><br />
+                
+                Everyone has a pretty good idea of what physicists study and research at university:
+                their understanding of fascinating natural phenomena such as gravity, electricity, light, and the Big Bang,
+                is developed via the tandem of experiments and theory. 
+                <br /><br />
+                
+                Physical models of our world can be improved and superseded. 
+                For example, classical Newtonian mechanics was superseded by Einstein's theory of relativity.
+                Of course, Newtonian mechanics is still a helpful model in our everyday life:
+                e.g., you don't need to study the curvature of spacetime to understand whether a house is stable or not. 
+                Yet some physical theories are refuted by experiments and completely replaced. 
+                <br /><br />
+                
+                This already highlights an important difference between physics and mathematics: 
+                mathematical statements that have been proven to be correct remain correct indefinitely. 
+                <br /><br />
+                
+                It would be incorrect to say that the difference between mathematics and physics is that physics examines existing phenomena whereas mathematics does not. 
+                Rather, mathematicians explore the general principles that underlie many natural phenomena and study these ideas within an abstract formalism. 
+                By contrast, physics aims to model reality as accurately as possible using mathematical models that aim to be precise representations of physical phenomena.
+                <br /><br />
+                
+                Obviously, mathematics plays an important role in many scientific fields. 
+                For instance, the models of physics are expressed in the language of mathematics, 
+                so close is the relationship between physics and mathematics that they would have been considered the same centuries ago. 
+                The rapid development of physics has driven new groundbreaking developments in mathematics 
+                because new mathematical tools were required to advance physical models.
+                In that light, a significant part of physics is mathematics, and physics drives much of modern mathematics.
+                <br /><br />
+                
+                Physics and mathematics are strongly connected. 
+                For example, the theory of general relativity, one of the central pillars of modern physics, 
+                was developed in conjunction with the mathematical field of differential geometry.
+                Mathematics has similar connections with every quantitative science, 
+                such as economics, computer science and all engineering sciences.
+                <br /><br />
+                
+                Mathematics is an indispensible tool in many disciplines of science and engineering, and be it only via a modicum of statistics. 
+                However, it would not do mathematics justice to just perceive it as a "problem solvers" in service of other sciences:
+                mathematics is not only advanced via its exchange with other scientific disciplines but also pioneers new directions by itself.
+                <!-- It sometimes said that mathematics is the language of science. 
+                On that note, let me quote Jakob Bernoulli:
+                
+                <blockquote>
+                    Every science needs mathematics, mathematics does not need any.
+                </blockquote>
+
+                However lofty, it is still a lot of fun to connect mathematics with new interesting applications and real-word phenomena! -->
+                <br /><br /><br />
+                <a href="#what" onclick="showSection('what')" class="bottom-left">Prev</a>
+                <a href="#whymath" onclick="showSection('whymath')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="whymath" class="mysection">
+            <h2>Why Math?</h2>
+            <p>
+                What is exciting about studying mathematics?
+                <br /><br />
+
+                Mathematics is challenging but also very rewarding.
+                It should have become clear now that doing mathematics largely consists of precise logical thinking and reasoning, as well as the study of very complex and abstract structures. 
+                The pursuit of mathematics trains abstract thinking and comprehension skills in a way that appeals requires you to grasp and evaluate complex relationships. 
+                <br /><br />
+                
+                Apart of the logical thinking, it is rewarding to find non-obvious solutions to problems. 
+                Good mathematicians need to think outside the box and sometimes several steps ahead, 
+                while keeping in mind the original exact assumptions and the exact result to be achieved. 
+                As a mathematician, you are therefore train yourself to quickly understand, model and simplify complex tasks.
+                <br /><br />
+
+                Mathematics is a subject that cannot be studied just "on the side". 
+                Studying this science requires a lot of discipline and mental fitness:
+                mathematician must analyze complicated relationships and shed light on the most important features. 
+                <br /><br />
+
+                <!-- We learned that mathematicians do spend all day calculating complicated fractions and formulas all day long. 
+                Rather, mathematicians work with logical conclusions and find more and more general abstractions.
+                These might be among the reasons why mathematicians end up in professions such as research, banking, business consulting, and insurance.  -->
+                <!-- <br /><br /> -->
+                
+                <!-- Understanding mathematics might be like learning to play a musical instrument: 
+                while some have it in their blood, 
+                others must work hard and might never get that good. 
+                <br /><br /> -->
+                
+                Lastly, you cannot study mathematics if you don't have fun with intellectual challenges!
+                <br /><br /><br />
+                <a href="#science" onclick="showSection('science')" class="bottom-left">Prev</a>
+                <a href="#branches" onclick="showSection('branches')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        
+        <article id="branches" class="mysection">
+            <h2>Mathematics and its branches</h2>
+            <p>
+                Mathematics is a vast science that encompasses many different sub-branches, 
+                each of which has its own unique concepts, methods and applications. 
+                These sub-branches sometimes overlap or interrelate, but each comes with its own unique charm and challenges. 
+                <br /><br />
+
+                Let us take a closer look at the variety of the fascinating world of mathematics 
+                and what makes some of its sub-branches so special. 
+                Whether you're a math enthusiast who wants to learn more about your favorite subject or you're just curious about what mathematics has to offer, let us continue this little tour!
+                
+                <br /><br /><br />
+                <a href="#whymath" onclick="showSection('whymath')" class="bottom-left">Prev</a>
+                <a href="#analysis" onclick="showSection('analysis')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="analysis" class="mysection">
+            <h2>Analysis</h2>
+            <p>
+                Mathematical analysis is the advanced and more rigorous version of calculus. 
+                Its typical subjects of study are sequences of numbers and functions in one or several variables. 
+                Particular interest in questions related to differentiation and integration. 
+                <br /><br />
+                
+                A very typical question demonstrates what mathematicians study in the domain of analysis:
+                what happens if add an infinite series of ever smaller numbers?
+                For example, any first-semester math student will need to figure out
+                what result you get if you keep successively adding the numbers
+
+                \[ 
+                    1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \cdots 
+                \]
+
+                This is a sum of infinitely many numbers. 
+                But the result is perhaps surprising: even though we add up an infinite sequence of numbers, 
+                the sum has a finite value. In this specific case this means that, as we keep adding this sequence of numbers, we get closer to \(2\).
+
+                On the other hand, such a pleasant outcome does not occur if we keep adding 
+
+                \[ 
+                    1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} + \cdots 
+                \]
+                                
+                Even though we keep adding smaller and smaller numbers, the sum will keep growing to infinity. 
+                No matter how large a threshold we choose, summing up the above sequence of numbers will sooner or later (rather later) surpass that number. 
+                <br /><br />
+                
+                <br /><br /><br />
+                <a href="#branches" onclick="showSection('branches')" class="bottom-left">Prev</a>
+                <a href="#algebra" onclick="showSection('algebra')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="algebra" class="mysection">
+            <h2>Algebra</h2>
+            <p>
+                As mentioned earlier, mathematicians study structures that generalize common notions and examples. 
+                Algebra is the branch of mathematics that specifically dedicated to such structures. 
+                <br/><br/>
+
+                A strong but helpful simplification is to say that algebra is the study of symbols and the rules for manipulating those symbols.
+                A typical starting point into algebra are polynomial equations: 
+                we would like to their solutions. 
+                For example, in high school we learned about quadratic equations such as 
+                \[ 
+                    ax^2 + bx + c = 0 
+                \]
+                and how to solve them with a solution formula. 
+                That being said, finding solutions is more complicated once we consider cubic equations,
+                \[ 
+                    ax^3 + bx^2 + cx + d = 0 
+                \]
+                or quartic equations
+                \[ 
+                    ax^4 + bx^3 + cx^2 + dx + e = 0
+                 \]
+                Mathematicians have discovered solution formulas even for those equations. 
+                <br/><br/>
+
+                But let's increase the challenge: what the more general case? 
+                Can we hope to find neat solution formulas for polynomial equations of degree \(n\)?
+                \[ 
+                    a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0 = 0 
+                \]
+                Mathematicians have long been wondering whether equations of higher degree admit 
+                any such general-purpose solution formulas. 
+                This is where so-called <a href="https://en.wikipedia.org/wiki/Galois_theory">Galois theory</a> comes into play, 
+                whose main result is that there is <b>no</b> solution formulas for equations of degree 5 and above. 
+                This is an astonishing revelation whose proof requires considerable work with abstract formalisms. 
+                <br/><br/>
+                
+                Towards accomplishments like this, algebra introduces many mathematical structures, far more abstract than vector spaces. 
+                These structures usually consist of a set, rules on how to operate with elements of this set. 
+                For example, polynomials are instance of a mathematical structure known as "rings". 
+                <br/><br/>
+                
+                In some sense, algebra develops an abstract notion of what it means to calculate. 
+                <br /><br /><br />
+                <a href="#analysis" onclick="showSection('analysis')" class="bottom-left">Prev</a>
+                <a href="#complexanalysis" onclick="showSection('complexanalysis')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="complexanalysis" class="mysection">
+            <h2>Complex Analysis</h2>
+            <p>
+                As we all learned in high school, 
+                the quadratic equation 
+                \[ 
+                    x^2 + 1 = 0
+                \]
+                does not admit any solutions, right? However, there is more nuance to it. 
+                We can solve such equations if we introduce the imaginary unit \(i\), which satisfies the equation \(i^2 = -1\). 
+                No real number has this property, but if we allow ourselves to formally use the imaginary unit, 
+                then we handle a powerful mathematical tool. 
+                We introduce the complex numbers such as 
+                \[
+                    1 + 3i, \quad 2 + 4i, \quad -2 - 7i, \quad, \dots 
+                \]
+                Even though this seems like an exercise in pure abstraction, 
+                using complex numbers has surprising applications in mathematics and the sciences.
+                <br/><br/>
+
+                In some sense, we can solve real problems by (temporarily) using numbers that do not exist.
+                <br/><br/>
+
+                Complex analysis is an area of mathematics that studies functions defined in complex numbers. 
+                It extends the concepts of calculus to functions that act on complex numbers. 
+                Complex analysis provides new surprising possibilities to handle mathematical problems 
+                in physics and engineering, such as computing many integrals. 
+                It also allows us to address problems in purely abstract mathematics, such as number theory. 
+                <br /><br /><br />
+                <a href="#algebra" onclick="showSection('algebra')" class="bottom-left">Prev</a>
+                <a href="#diffeq" onclick="showSection('diffeq')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="diffeq" class="mysection">
+            <h2>Differential Equations</h2>
+            <p>
+                The study of differential equations is among the core disciplines of modern mathematics:
+                it is said that most of research mathematics nowadays is directly or indirectly related to differential equations.
+                <br/><br/>
+                
+                Differential equations are of paramount importance for modeling phenomena in science and engineering,
+                providing the mathematical description of heat diffusion, wave propagation, fluid mechanics, quantum mechanics, and more. 
+                For example, the <a href="https://en.wikipedia.org/wiki/Heat_equation">heat equation</a>
+                \[
+                    \partial_t u(x,t) = \partial_{xx}^2 u(x,t).
+                \]
+                models the diffusion of heat. Here, \(u(x,t)\) is a function that describes the temperature at position \(x\) and time \(t\).
+                The heat equation models a basic theory of heat diffusion 
+                where the rate of temperature change is proportional to second-derivative of the heat distribution. 
+                Once the model is derived on the basis of reasonable physical principles,
+                mathematicians take on to study its properties. 
+                <br/><br/>
+
+                Mathematicians want to find a function that satisfies the heat equation (or whatever differential equation they are interested in). 
+                In the example of the heat equation, 
+                the solution would obviously provide the heat distribution. 
+                Even though we can explicit write down formulas for differential equations that are sufficiently simple,
+                explicit solution formulas are beyond our possibilities. 
+                Nevertheless, mathematics can still reveal interesting features of even very complicated differential equations, 
+                such as mass or energy conservation. 
+                <br/><br/>
+
+                Every differential equation is its own little world that requires different mathematical techniques. 
+                Differential equations are very challenging but also very potent as a tool for any scientist and engineer,
+                and they have been crucial for understanding the world around us. 
+                <br/><br/>
+
+                As already mentioned, it is often beyond our possibilities to find explicit solution formulas for differential equations. 
+                Yet more often than not we are content with having a good approximation to the solution. 
+                That is where numerical simulations take the center stage. 
+                <br /><br /><br />
+                <a href="#complexanalysis" onclick="showSection('complexanalysis')" class="bottom-left">Prev</a>
+                <a href="#numerics" onclick="showSection('numerics')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="numerics" class="mysection">
+            <h2>Numerical Simulations</h2>
+            <p>
+                Numerical simulations are of critical importance for research and development in science and engineering. 
+                While mathematicians usually enjoy pure abstraction, 
+                numerical mathematics is were finally get back to computation!
+                <br /><br />
+                
+                That is, we let the computer do the computation for us.
+                <br /><br />
+                
+                Many mathematical problems that arise in physics and other natural sciences 
+                can solved exactly in theory,
+                but in practice we are neither able to find the exact solution, 
+                nor we actually need to. 
+                Sufficiently good approximations serve our purpuse just as well in practice. 
+                Numerical mathematics is about computer algorithms that provide sufficiently
+                accurate solutions for such problems in analysis. 
+                <br/><br/>
+                
+                Consider a linear system of equations in 100 unknowns. 
+                In theory, we could solve such systems using Gaussian elimination, familiar from school,
+                and much of numerical mathematics is about implementing such algorithms on a computer. 
+                <br/><br/>
+
+                But what if we have 1'000'000 unknowns instead? 
+                Gaussian elimination would take an unacceptable time to finish,
+                But a sufficiently accurate solution, correct within a few orders of magnitude, may serve our practical needs
+                while being much easier to find. 
+                Following on that principle, 
+                iterative solution techniques achieve good approximations to the true solution within acceptable time.
+                <br/><br/>
+
+                Numerical mathematics is used extensively for differential equations: 
+                whereas explicitly calculating the solution to a differential equation might be difficult or even impossible, 
+                there is a huge variety of algorithms that approximate the solution. 
+                Considerable research efforts are directed into developing advanced algorithms 
+                that extract the last bit of efficiency on the computer for the purpose of solving differential equations. 
+                <br/><br/>
+
+                Besides, the numerical simulation of differential equations typically involves the solution of large linear systems of equations as a subroutine. This is a nice illustration how achievements in mathematics incrementally build on successive results. 
+                <br /><br /><br />
+                <a href="#diffeq" onclick="showSection('diffeq')" class="bottom-left">Prev</a>
+                <a href="#probability" onclick="showSection('probability')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="probability" class="mysection">
+            <h2>Probability & Statistics</h2>
+            <p>
+                Probability and statistics are two closely related branches of mathematics
+                which deal with data and and uncertainty. 
+                <br /><br />
+                
+                Probability theory addresses the mathematical modeling and analysis of random events and processes.
+                If we flip a perfectly balanced coin ten times, what are the odds of it always showing heads? 
+                What about the probability that a molecule travels from corner of the room to the opposite corner?
+                Probability theory provides solid mathematical answers to such questions. 
+                Mathematically, probability theory builds upon analysis, most famously measure theory and integration.
+                In turn, probability provides the conceptual foundations for the rich field of statistics. 
+                <br /><br />
+                
+                Statistics is well-known to virtually anyone working within the quantitative sciences. 
+                Statisticians' work centers around collecting and analyzing empirical data.
+                They use the methods of probability theory to draw conclusions from the data set. 
+                Sound mathematical foundations are very important here to draw the correct conclusions from data:
+                we wish to recognize valuable information even in the presence of measurement errors 
+                but we also want to distinguish real signals in the data from spurious mistakes.
+                Statistics permeates all sciences and technologies and is essential in extracting information from data, 
+                recognizing patterns, and making predictions about the future from past observations. 
+                
+                <br /><br /><br />
+                <a href="#numerics" onclick="showSection('numerics')" class="bottom-left">Prev</a>
+                <a href="#topology" onclick="showSection('topology')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="topology" class="mysection">
+            <h2>Topology</h2>
+            <p>
+                Topology studies properties of geometric bodies from a qualitative and abstract point-of-view. 
+                <br /><br />
+                
+                Topologists study so-called topological spaces,
+                which are sets that are equipped with an abstract concept of “closeness”.
+                It turns out that topological spaces have qualitative properties that do not change under deformations
+                such as stretching and bending, and these are the focus of topology. 
+                <br /><br />
+                
+                Topology therefore explores abstract qualitative properties that are retained when objects are deformed, bent or stretched.
+                Albeit very abstract, topology is everywhere throughout mathematics: 
+                it has long surpassed its humble origins in geometry and provides the foundations for much of modern mathematics. 
+                Topology has influenced analysis, algebra, and geometry, and has even found applications in physics and computer science.
+
+                <br /><br /><br />
+                <a href="#probability" onclick="showSection('probability')" class="bottom-left">Prev</a>
+                <a href="#numbertheory" onclick="showSection('numbertheory')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="numbertheory" class="mysection">
+            <h2>Number Theory</h2>
+            <p>
+                Number theory is the study of integers and the relationships between them. 
+                Mathematics all started with numbers, and so it is only fitting that the field of "number theory" is dedicated solely to them. 
+                <br /><br />
+                
+                An amazing feature of number theory is that many of its important questions are easy to state even though the mathematics behind them is among the most challenging. 
+                For example, take the famous <a href="https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem">"Fermat's last theorem"</a>, 
+                which states that the equation 
+                \[ 
+                    a^n + b^n = c^n 
+                \]
+                has no integer solutions with \( a, b, c > 0 \) und \( n > 2 \).
+                <br /><br />
+                
+                The statement is easy to understand, but the proof is far from easy:
+                Fermat wrote down that equation in his notebook in the 17th century.
+                Though Fermat claimed that he had found an easy proof and merely lack the space to write it down, 
+                mathematicians spent centuries trying to determine whether Fermat's claim was really true. 
+                <br /><br />
+                
+                It was only until 1993, more than 350 years later,
+                that Wiles and Taylor were able to prove this statement in a comprehensive proof of 100 pages. 
+                Their proof utilized many new results from algebraic number theory that could never have been known to Fermat at that time, 
+                and only the most capable number theorists today have full understanding of the proof.
+                <br /><br />
+                
+                Even though number theory has remained a purely artisanal endeavor of dedicated enthusiasts for centuries,
+                the last decades have catapulted it to the forefront of information technology:
+                all of modern cryptography and data security are essentially the offspring of number theory,
+                whose mathematics had been millennia in the making.
+
+                <!-- Number theory generally deals with the properties of integers, e.g. with the distribution of prime numbers.  -->
+                <br /><br /><br />
+                <a href="#topology" onclick="showSection('topology')" class="bottom-left">Prev</a>
+                <a href="#logic" onclick="showSection('logic')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="logic" class="mysection">
+            <h2>Logic</h2>
+            <p>
+                Logic is essential for mathematics, but it is also a mathematical research area on its own!
+                <br /><br />
+                
+                Like no other science, mathematics develops networks of logical conclusions. 
+                Starting with the initial axioms, mathematicians create ever more complex theories. 
+                It is thus a very important questions for mathematicians which mathematical statements can be inferred by which mathematical tools from which mathematical axioms. 
+                <br /><br />
+                
+                Surprisingly, modern mathematics only began analyzing its logical foundations late in the 19th century. 
+                Mathematicians soon encountered  the "problem" of not being able to prove itself: 
+                showing that a system of proofs emerging from certain axioms is correct
+                would in turn require proving the axioms themselves, 
+                which would again require another set of axioms.
+                Throughout the 20th century, 
+                mathematical research consolidated a set of axioms that are now generally accepted as the foundations of mathematics: 
+                the <a href="https://en.wikipedia.org/wiki/Zermelo%E2%80%93Fraenkel_set_theory">Zermelo-Fraenkel set theory</a>.
+                <br /><br />
+                
+                However, other axioms still remained controversial. 
+                While the laws of logic apply to all mathematicians the same, 
+                some mathematicians are reluctant to use certain axioms such as the axiom of choice. 
+                Another important but controversial axiom is known as continuum's hypothesis: 
+                roughly speaking, the continuum's hypothesis states that there is no intermediate infinity between the infinity of the natural numbers and the infinity of real numbers. 
+                Whether to use that axiom remains indeed at any mathematician's discretion, 
+                though this will hardly ever apply to any "real-life" mathematics.
+                <br /><br />
+                
+                At the same time, mathematical logic was haunted by the spectre of contradiction: 
+                mathematicians could not exclude the possibility that the generally accepted axioms of mathematicians would eventually lead to contradictory statements, which would signify a serious flaw in modern mathematics. 
+                <br /><br />
+                
+                Kurt Gödel, one of the most famous logicians, showed a fascinating yet sobering result in mathematical logic:
+                simply put, when we use any system of axioms, then either there are true statements whose truth can never be proven, 
+                or there are contradictions.
+                This result of 1931 is now famously known as Gödel's incompleteness theorem. 
+                <br /><br />
+                
+                As amazing as it may sound: there are (mathematical) truths that can never show to be true. 
+                <br /><br /><br />
+                <a href="#numbertheory" onclick="showSection('numbertheory')" class="bottom-left">Prev</a>
+                <a href="#discrete" onclick="showSection('discrete')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        
+        <article id="discrete" class="mysection">
+            <h2>Discrete Mathematics</h2>
+            <p>
+                Discrete mathematics, aptly named, focuses on "discrete" structures, such as finite sets and graphs. 
+                Discrete mathematics thus studies objects that can be clearly separated from each other, 
+                which is a contrast to analysis, and it can be described as an extension and generalization of combinatorics. 
+                <br /><br />
+
+                Speaking of combinatorics, you now at least some combinatorics from high school. 
+                Combinatorics deals with counting, rearrangements, and combinations of finitely many elements. 
+                A classical example of a combinatorial question is this:
+                how many possibilities are there to rearrange \(n\) different objects in a row? 
+                The answer is \(n!\) (n-factorial), which is product of all positive integers up to \(n\).
+                <br /><br />
+                
+                The perhaps largest branch of discrete mathematics nowadays is graph theory. 
+                In the context of discrete mathematics, a "graph" can be understood as a huge "bubble diagram":
+                we have discrete nodes and connections between those nodes, the latter also being called "edges".
+                Graphs are interesting objects from a purely mathematical point of view, 
+                but they also model numerous real life structures: 
+                just think of computer networks or social networks. 
+                A typical question of graph theory is, for example, 
+                how to pass a message from one node in the network to another node  
+                such that the message passes only as few edges as possible. 
+                <br /><br />
+
+                Discrete mathematics, while not as famous as continuous mathematics, 
+                is central to modern technology and computer science. 
+                The foundations of computer science and data structures in programming build on top of graph theory. 
+                Among the most challenging and astonishing applications is chip design:
+                discrete mathematics has prepared the groundwork for the modern construction of computer chips. 
+                <br /><br /><br />
+                <a href="#logic" onclick="showSection('logic')" class="bottom-left">Prev</a>
+                <a href="#tcs" onclick="showSection('tcs')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="tcs" class="mysection">
+            <h2>Theoretical Computer Science</h2>
+            <p>
+                Theoretical computer science is at the intersection of computer science and abstract mathematics. 
+                Abstract mathematical formalisms have been tremendously successful in preparing the foundations of technological advancements and taming the complexity of modern computation. 
+                But the many fascinating aspects of theoretical computer science have also led to exciting new fields of mathematics. 
+                <br /><br />
+
+                At its very foundations is computability theory: 
+                what does computation mean and what problems can be solved by a computer algorithm?
+                British mathematician Alan Turing introduced what is now known as <a href="https://en.wikipedia.org/wiki/Turing_machine">Turing machine</a>:
+                an abstract model of computation that exactly captures the notion of what computer algorithm means. 
+                He thus consolidated the theoretical groundwork for our modern information age. 
+                <br /><br />
+
+                A famous problem in computability theory is the halting problem, which asks the following: 
+                is an algorithm that can decide whether a computer program will stop or run forever? 
+                Any programmer who has encountered an infinite loop bug will wish there'd be such an algorithm. 
+                But Alan Turing proved that no such algorithm can exist,
+                which means that the halting problem cannot be solved by any computer program.
+                <br /><br />
+
+                Advanced topics in theoretical computer science include the study of data structures and algorithms. 
+                In a certain sense, theoretical computer science prepares conceptual templates of algorithms 
+                that are implemented on different hardwares in different programming languages and for a wide range of different problems. 
+                For example, researchers study the sorting problem:
+                given a list of numbers (or other items that can be ordered), what is the fastest way of ordering this list? 
+                You can easily imagine that alphabetically sorting a completely random list of 100'000'000 names is demanding task for any computer, 
+                so this seemingly simple problem has attracted considerable efforts throughout the years 
+                and researchers have been inventive in improving existing algorithms: 
+                not by fine-tuning specific implementations, 
+                but by a better understanding of the mathematics of the sorting problem. 
+                <br /><br /><br />
+                <a href="#discrete" onclick="showSection('discrete')" class="bottom-left">Prev</a>
+                <a href="#summary" onclick="showSection('summary')" class="bottom-right">Next</a>                    
+            </p>
+        </article>
+        <article id="summary" class="mysection">
+            <h2>Thank you for visiting!</h2>
+            <p>
+                We have reached the end of our tour of mathematics. 
+                I hope you enjoyed exploring my website and that you gained some interesting insights into the world of mathematics (and some computer science too). 
+                <br /><br />
+                
+                Mathematics remains a fascinating and active science,
+                Mathematical research constantly raises new questions and sheds new light on old problems. 
+                Since ages, it has offered not only intellectual challenges
+                but also the practical tools that shape technological progress.
+                <br /><br />
+                
+                Mathematics has made enormous contributions in today's world solely by the means of pure logic.
+                My goal was to giving you a broad overview of modern mathematics in an understandable way and share some of the fascination that I experience.
+                <br /><br />
+                
+                If you have any questions, would like to give suggestions or just want to discuss a specific topic, I am happy to help. 
+                You can contact me at any time via <a href="mailto:martin.licht@epfl.ch">email</a>.
+                <br /><br /><br />
+                <a href="#tcs" onclick="showSection('tcs')" class="bottom-left">Prev</a>
+                <a href="#about" onclick="showSection('about')" class="bottom-right">Next</a>
+            </p>
+        </article>
+        <article id="about" class="mysection">
+            <h2>About</h2>
+            <p>
+                My name is Martin and I was only 20 years old when I wrote these text. 
+                <br />
+                <br />
+                Back then, I was a student of mathematics and computer science at the university of Bonn. 
+                <br />
+                <br />
+                My excitement has continued ever since. 
+                <br />
+                <br />
+                Feel free to message me: <a href="mailto:martin.licht@epfl.ch">martin.licht@epfl.ch</a>
+                <br /><br /><br />
+                <br /><br /><br />
+                <i>The background photos are: 1) Bonn's Messdorfer Feld 2) some canyon in San Diego 3) once more Bonn!</i>
+                <br /><br /><br />
+                <a href="#summary" onclick="showSection('summary')" class="bottom-left">Prev</a>
+                <!-- <a href="#whatnot" onclick="showSection('whatnot')" class="bottom-right">Next</a> -->
+                <a href="https://validator.w3.org/check?uri=martinlicht.github.io/mathpage/index.html" target="_blank" class="bottom-right">
+                    <img src="https://www.w3.org/Icons/valid-html401.png" alt="Valid XHTML 1.0!" height="31" width="88">
+                </a>
+                <!-- <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank">
+                    <img style="border:0;width:88px;height:31px"
+                        src="https://jigsaw.w3.org/css-validator/images/vcss"
+                        alt="Valid CSS!">
+                </a> -->
+            </p>
+        </article>
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+    <script>
+        
+        the_hash = window.location.hash;
+        if( the_hash === '' ){
+            showSection( 'start' );
+        } else {
+            the_hash = the_hash.substring( 1 );
+            showSection( the_hash );
+        }
+
+        // Detect when the fragment identifier changes
+        window.addEventListener('hashchange', function() {
+            the_hash = window.location.hash;
+            the_hash = the_hash.substring( 1 );
+            console.log('The fragment identifier has changed to: ' + the_hash );
+            showSection( the_hash );
+        });
+    </script>
+</body>
+</html>
