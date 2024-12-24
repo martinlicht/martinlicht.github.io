@@ -1,0 +1,219 @@
+
+<!doctype html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="Martin Licht, Martin Werner Licht, Finite Element Exterior Calculus, Smoothed Projection">
+        <meta name="author" content="Martin Licht">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        
+        <link href="index.css" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title>
+            Martin W. Licht - Git tricks
+        </title>
+
+        <style>
+            pre { background-color: rgb(251, 255, 225); padding: 1em; }
+            ol li:not(:first-child) { margin-top: 1em; }
+        </style>
+    </head>
+    
+    <body class="flex-container">
+    
+        <header>
+            <nav>
+                <a href="index.html"><b>HOME</b></a>
+            </nav>
+        </header>
+
+        <article style="background-color: rgb(251, 255, 225)">
+            <h2>How to use Git with private repositories</h2>
+
+            This guide will show you how to access private repositories on Github. 
+            This is not as straight-forward as it used to be 
+            since Github has made SSH mandatory for accessing private repositories a few years ago.
+            So some low-level set up is required to make this work. 
+            I found the official documentation by Github to be lacking a few details,
+            which is why I have written this guide. 
+
+            Public repositories can be accessed via SSH or the more traditional HTTPS, 
+            so this does not require any special setup.
+            
+            <ul class="toc">
+                <li><a href="#article-1">Creating the SSH key pair and setting the repo URL</a></li>
+                <li><a href="#article-2">Special instructions for Git Bash</a></li>
+            </ul>
+        </article>
+        
+        <article id="article-1">
+            <h1>Creating the SSH key pair and setting the repo URL</h1>
+            <ol>
+                <li style="margin-top: 1em;">
+                    The following steps should work on any Linux shell and any other Unix-like shell, 
+                    such as Cygwin or Git Bash.
+                </li>
+                <li style="margin-top: 1em;">
+                    First things first, we create new pair of private and public keys to be used for Github.
+                    <pre><code>ssh-keygen -t rsa -b 4096 -f ~/.ssh/githubkey</code></pre>
+                    This line will generate two files <code>githubkey</code> and <code>githubkey.pub</code> within the <code>.ssh</code> subdirectory of your home directory.
+                    The first file is the private key and the second file is the public key.
+                    <br>
+                    <br>
+                    Instead of an RSA key pair, you might opt to use an ed25519 key pair instead.
+                    This new type of key pair is faster and safer. 
+                    Some older servers may not support it, but Github does.
+                    If that is your choice, you change the previous line to:
+                    <pre><code>ssh-keygen -t ed25519 -f ~/.ssh/githubkey</code></pre>
+                    In either case, the command <code>ssh-keygen</code> will ask you for an optional passphrase. 
+                    You may just leave them blank. 
+                    Otherwise, any SSH connection will need you to enter the passphrase as an additional security feature.
+                </li>
+                <li style="margin-top: 1em;">
+                    You can inspect the content of the public key file:
+                    <pre><code>cat ~/.ssh/githubkey.pub</code></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    Now you go the list of SSH keys for your Github account. 
+                    You find them at:
+                    https://github.com/settings/keys.
+                    Click on the button <code>New SSH key</code>.
+                    Now you enter an name for the new key 
+                    and copy the content of <code>githubkey.pub</code> into the <code>Key</code> textfield.
+                    <br>
+                    <br>
+                    You find instructions for this step in the 
+                    <a href="https://docs.github.com/en/github-ae@latest/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">official documentation</a> as well.
+                </li>
+                <li style="margin-top: 1em;">
+                    We need an SSH agent running in the background. 
+                    On Linux, the ssh agent should already be running in the background.
+                    Regardless, if the ssh agent is not running yet, 
+                    then you simply execute 
+                    <pre><code>eval `ssh-agent -s`</code></pre>
+                    to get the agent started in the background of your current shell.
+                </li>
+                <li style="margin-top: 1em;">
+                    In a modern Linux environment, 
+                    the SSH agent already looks for SSH keys inside the <code>.ssh</code> directory on a per-use basis. 
+                    In other environments, we need to manually add the SSH key:
+                    <pre><code>ssh-add ~/.ssh/githubkey</code></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    Let us test the SSH connection by trying shell access on Github:
+                    <pre><code>ssh -T git@github.com</code></pre>
+                    Github will confirm that we can authenticate. 
+                    You should receive the message
+                    <pre><code>Hi username! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    Either you already have a repository on Github that you want to clone,
+                    or you already have a local repo that you want to connect.
+                    Let us address the former case first and then the latter case.
+                    <br>
+                    <br>
+                    You can clone an existing repo from Github into your current working directory via 
+                    <pre><code>git clone git@github.com:username/your-repository.git</code></pre>
+                    Note that your username for SSH login purposes is simply <code>git</code>, 
+                    which is perhaps somewhat counterintuitively. 
+                    Now you are all set!
+                </li>
+                <li style="margin-top: 1em;">
+                    Now we address the case where you already have a local Git repository. 
+                    You must then indicate to Git how and where to reach the remote repository on Github. 
+                    First, make sure you are in the directory of your local repo:
+                    <pre><code>cd /path/to/your/repo</code></pre>
+                    You see the known remote repositories and their urls via
+                    <pre><code>git remote -v</code></pre>
+                    If you already see a line like 
+                    <pre><code>nickname_of_remote_repo git@github.com:username/your-repository.git</code></pre>
+                    then you are good to go. Otherwise, you can either add the new remote repository via
+                    <pre><code>git remote add nickname_of_remote_repo git@github.com:username/your-repository.git</code></pre>
+                    or you change the address of an existing one via 
+                    <pre><code>git remote set-url nickname_of_remote_repo git@github.com:username/your-repository.git</code></pre>
+                    Please pick the right name instead of <code>nickname_of_remote_repo</code>. 
+                    The most common name is <code>origin</code> but you might have chosen something else.
+                    Now you are all set!
+                </li>
+                <!-- <li style="margin-top: 1em;">
+                    Now you are all set!
+                </li> -->
+                
+            </ol>
+        </article>
+
+        <article id="article-2">
+            <h1>Special instructions for Git Bash</h1>
+            <ol>
+                <li>
+                    Git Bash is a lightweight bash emulation for Windows. 
+                    It provides a limited unix-like command line on Windows with specific focus on Git functionality.
+                    <br>
+                    <br>
+                    Git Bash is part of the <a href="https://gitforwindows.org">Git for Windows</a> software package. 
+                    Though this package also includes a graphical user interface, I am going to focus on the bash emulation here. 
+                </li>
+                <li>
+                    The above instructions apply just the same when you use Git Bash. 
+                    However, Git Bash is one of the settings where the ssh agent is not started in the background.
+                    We therefore need it to do by ourselves:
+                    <pre><code>eval 'ssh-agent -s' && ssh-add ~/.ssh/githubkey</code></pre>
+                </li>
+                <li>
+                    It would be much more convenient if that command were executed on every login.
+                    Git Bash uses <code>profile</code> for any commands to be executed on login.
+                    Let us first make sure it exists:
+                    <pre><code>cd<br>touch .profile</code></pre>
+                    You can open that file by any editor of choice and add the command
+                    <pre><code>eval 'ssh-agent -s' && ssh-add ~/.ssh/githubkey</code></pre>
+                </li>
+                <li>
+                    Now the ssh agent will be started whenever you open a Git Bash shell and the requested keys will be added automatically.
+                </li>
+                <li>
+                    Depending on personal preferences, you may want to apply some tweaks.
+                    <br>
+                    <br>
+                    Personally, I always find it confusing to keep track of what scripts are executed on login. 
+                    Git Bash does not come with a <code>.profile</code> file so you probably need to set up yourself. 
+                    I like to announce what is being executed at the start of a session:
+                    <pre><code>echo "executing .profile"<br>eval 'ssh-agent -s' && ssh-add ~/.ssh/githubkey</code></pre>
+                    Some people have the opposite preference:
+                    the login script should be as silent as possible.
+                    In that case, we redirect standard output.
+                    <pre><code>eval 'ssh-agent -s' > /dev/null && ssh-add ~/.ssh/githubkey > /dev/null </code></pre>
+                    That variation suppresses all output except errors.
+                </li>
+            </ol>
+        </article>
+
+        
+        
+        <footer class="flex-item">
+                <i>
+                    Last Update: 
+                    <script language="JavaScript">
+                      var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+                      var mydate = new Date( document.lastModified );
+                      document.write( months[ mydate.getMonth() ] + " " + mydate.getDate() + ", " + mydate.getFullYear() );
+                    </script>
+                    <!-- November 2, 2021 -->
+                  <br>
+                  <a class=tarnkappe href="https://arxiv.org/abs/1710.06868">Martin Werner Licht</a>
+                  <a class=tarnkappe href="https://arxiv.org/abs/1612.02756">Martin Werner Licht</a>
+                  Martin W. Licht
+                </i>
+                <p>
+                    <a href="https://validator.w3.org/check?uri=martinlicht.github.io/git.html" target="_blank">
+                        <img src="https://www.w3.org/Icons/valid-html401.png" alt="Valid XHTML 1.0!" height="31" width="88">
+                    </a>
+                </p>
+        </footer>
+    
+    </body>
+    
+</html>

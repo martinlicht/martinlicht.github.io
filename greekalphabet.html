@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print A4 Page</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        .header {
+            width: 100%;
+            text-align: left;
+            top: 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        @media print {
+            .header, .footer {
+                position: fixed;
+            }
+            .header {
+                top: 0;
+            }
+            .footer {
+                bottom: 0;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18pt;
+            line-height: 1.6;
+            margin: 3em;
+            padding: 0;
+        }
+
+        .content {
+            margin-left:   0em;
+            margin-right:  0em;
+            margin-top:    0em;
+            margin-bottom: 0em;
+            column-count: 2;
+            column-gap: 1em;
+        }
+
+        .column {
+            display: inline-block;
+            width: 49%;
+            vertical-align: top;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+/*             break-inside: avoid; */
+            text-align: center
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20mm;
+            break-inside: avoid;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+-
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20mm;
+            break-inside: avoid;
+            border: 0.1em solid black;
+        }
+
+        table th, table td {
+            border-top: 0.1em solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        td:nth-child(1)
+        {
+            text-align: center;
+        }
+
+        td:nth-child(2), 
+        td:nth-child(3)
+        {
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+<!--    <div class="header">
+        <h3>Ancient Greek Alphabet</h3>
+    </div>-->
+    <h1>Ancient Greek Alphabet</h1>
+    <div class="content">
+<!--         <div class="column"> -->
+            <table>
+                <table>
+                <tr>
+                    <th colspan="2">Letter</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>Α</td>
+                    <td>α</td>
+                    <td>Alpha</td>
+                </tr>
+                <tr>
+                    <td>Β</td>
+                    <td>β&nbsp;ϐ</td>
+                    <td>Beta</td>
+                </tr>
+                <tr>
+                    <td>Γ</td>
+                    <td>γ</td>
+                    <td>Gamma</td>
+                </tr>
+                <tr>
+                    <td>Δ</td>
+                    <td>δ</td>
+                    <td>Delta</td>
+                </tr>
+                <tr>
+                    <td>Ε</td>
+                    <td>ε</td>
+                    <td>Epsilon</td>
+                </tr>
+                <tr>
+                    <td>Ζ</td>
+                    <td>ζ</td>
+                    <td>Zeta</td>
+                </tr>
+                <tr>
+                    <td>Η</td>
+                    <td>η</td>
+                    <td>Eta</td>
+                </tr>
+                <tr>
+                    <td>Θ</td>
+                    <td>θ&nbsp;ϑ</td>
+                    <td>Theta</td>
+                </tr>
+                <tr>
+                    <td>Ι</td>
+                    <td>ι</td>
+                    <td>Iota</td>
+                </tr>
+                <tr>
+                    <td>Κ</td>
+                    <td>κ&nbsp;ϰ</td>
+                    <td>Kappa</td>
+                </tr>
+                <tr>
+                    <td>Λ</td>
+                    <td>λ</td>
+                    <td>Lambda</td>
+                </tr>
+                <tr>
+                    <td>Μ</td>
+                    <td>μ</td>
+                    <td>Mu</td>
+                </tr>
+            </table>
+            </table>
+<!--         </div> -->
+<!--         <div class="column"> -->
+            <table>
+                <!--<tr>
+                    <th>Letter</th>
+                    <th>Name</th>
+                </tr>-->
+                <table>
+                <tr>
+                    <th colspan="2">Letter</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>Ν</td>
+                    <td>ν</td>
+                    <td>Nu</td>
+                </tr>
+                <tr>
+                    <td>Ξ</td>
+                    <td>ξ</td>
+                    <td>Xi</td>
+                </tr>
+                <tr>
+                    <td>Ο</td>
+                    <td>ο</td>
+                    <td>Omicron</td>
+                </tr>
+                <tr>
+                    <td>Π</td>
+                    <td>π&nbsp;ϖ</td>
+                    <td>Pi</td>
+                </tr>
+                <tr>
+                    <td>Ρ</td>
+                    <td>ρ&nbsp;ϱ</td>
+                    <td>Rho</td>
+                </tr>
+                <tr>
+                    <td>Σ</td>
+                    <td>σ&nbsp;ς</td>
+                    <td>Sigma</td>
+                </tr>
+                <tr>
+                    <td>Τ</td>
+                    <td>τ</td>
+                    <td>Tau</td>
+                </tr>
+                <tr>
+                    <td>Υ&nbsp;ϒ</td>
+                    <td>υ</td>
+                    <td>Upsilon</td>
+                </tr>
+                <tr>
+                    <td>Φ</td>
+                    <td>φ&nbsp;ϕ</td>
+                    <td>Phi</td>
+                </tr>
+                <tr>
+                    <td>Χ</td>
+                    <td>χ</td>
+                    <td>Chi</td>
+                </tr>
+                <tr>
+                    <td>Ψ</td>
+                    <td>ψ</td>
+                    <td>Psi</td>
+                </tr>
+                <tr>
+                    <td>Ω</td>
+                    <td>ω</td>
+                    <td>Omega</td>
+                </tr>
+            </table>
+<!--         </div> -->
+    </div>
+</body>
+</html>

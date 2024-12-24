@@ -1,0 +1,220 @@
+
+<!doctype html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="Martin Licht, Martin Werner Licht, Finite Element Exterior Calculus, Smoothed Projection">
+        <meta name="author" content="Martin Licht">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        
+        <link href="index.css" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title>
+            Martin W. Licht - Using Clang++ and Make natively on Windows
+        </title>
+
+        <style>
+            pre { background-color: rgb(251, 255, 225); padding: 1em; }
+            pre.highlight { background-color: rgb(255, 255, 255); padding: 0.0em; }
+            ol li:not(:first-child) { margin-top: 1em; }
+        </style>
+    </head>
+    
+    <body class="flex-container">
+    
+        <header>
+            <nav>
+                <a href="index.html"><b>HOME</b></a>
+            </nav>
+        </header>
+
+        <article style="background-color: rgb(251, 255, 225)">
+            <h2>Using Clang++ and Make natively on Windows</h2>
+
+            This guide will explain you how to install Clang++ and Make on Windows:
+            specifically, we will discuss the MinGW-w64 project. 
+            <br><br>
+            In my experience, getting these programs to run natively on Windows is faster than calling them from within emulation layers such as Cygwin.
+        </article>
+        
+        <article id="article-1">
+            <h1>Downloads</h1>
+            <ol>
+                <li style="margin-top: 1em;">
+                    Open your web browser and load the official project website of the MinGW-w64 project:
+                    <pre class="highlight"><a href="https://www.mingw-w64.org/">https://www.mingw-w64.org/</a></pre>
+                    Actually, we can go straight to the download section:
+                    <pre class="highlight"><a href="https://www.mingw-w64.org/downloads">https://www.mingw-w64.org/downloads</a></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    You find several links to different packages of MinGW-w64 bundled together with compilers and additional software. 
+                    This guide focuses on the LLVM package, <code>LLVM-MinGW</code>, which provides the LLVM compilers and also comes bundled with <code>make</code> and <code>Python</code> (Version >= 3.9).
+                </li>
+                <li style="margin-top: 1em;">
+                    Use the link on the website or go directly to:
+                    <pre class="highlight"><a href="https://github.com/mstorsjo/llvm-mingw/releases">https://github.com/mstorsjo/llvm-mingw/releases</a></pre>
+                    Here, you find Zip-files that contain the precompiled binaries, for different processor architectures and operating systems. 
+                </li>
+                <li style="margin-top: 1em;">
+                    We need to understand which version to download. 
+                    A brief explanation is found on the project homepage on Github:
+                    <pre class="highlight"><a href="https://github.com/mstorsjo/llvm-mingw#releases">https://github.com/mstorsjo/llvm-mingw#releases</a></pre>
+                    We want to work on Windows directly, so we look for Zip-files called 
+                    <pre>llvm-mingw-&lt;version&gt;-&lt;crt&gt;-&lt;arch&gt;.zip</pre>
+                    where 
+                    <ol style="margin-bottom: 1em; margin-top: 1em;">
+                        <li>
+                            <code>&lt;version&gt;</code>
+                            - A running number that simply indicates the version of the package
+                        </li>
+                        <li>
+                            <code>&lt;crt&gt;</code>
+                            - The C runtime library required, which is either <code>mscvrt</code> or <code>ucrt</code>. 
+                            The former is the MSV C runtime, which is available on all versions of Windows but has less features.
+                            The latter is the Universal C runtime, which is pre-installed from Windows 10 onwards.
+                            Please note that the Zip-file will not provide that runtime library, 
+                            you need to make sure that your Windows installation already provides it. 
+                            For that reason, we will pick the MSV C runtime. 
+                        </li>
+                        <li>
+                            <code>&lt;arch&gt;</code>
+                            - This indicates the processor architecture, which is one of the following:
+                            <ul>
+                                <li style="margin-top: 1em;"><code>i686</code>, which is the 32-bit architecture of Intel</li>
+                                <li><code>x86-64</code>, which is the 64-bit architecture of Intel</li>
+                                <li><code>armv7</code>, which is the 32-bit architecture of ARM</li>
+                                <li style="margin-bottom: 1em;"><code>aarch64</code>, which is the 64-bit architecture of ARM</li>
+                            </ul>
+                            The package contains binaries to compile <b>for</b> any of those architectures but these binaries only run <b>on</b> the specified architecture.
+                            For that reason, you need look up which processor is being used on your machine and pick the appropriate package.
+                        </li>
+                    </ol>
+                    Let us suppose from now on that we have picked 64-bit Intel CPU and, just for compatibility reasons, use the MSV C runtime.
+                    The version will be <code>20231003</code>.
+                    You <b>must</b> adapt the following lines according to your choice of package, and likely your version number will be more advanced.
+                    <br>
+                    <br>
+                    Whatever you pick, download the Zip file.
+                </li>
+            </ol>
+        </article>
+
+        <article id="article-2">
+            <h1>Installing and testing clang and make</h1>
+            <ol>
+                <li>
+                    The installation begins with simply unpacking the .zip archive and transfering the folder to a convenient location. 
+                    For simplicity, we choose the put our copy to the top folder folder of the main drive <code>C:\</code>.
+                    All the binaries are now contained in 
+                    <pre><code>C:\llvm-mingw-20231003-msvcrt-x86_64</code></pre>
+                </li>
+                <li>
+                    The most important subfolder is 
+                    <pre><code>C:\llvm-mingw-20231003-msvcrt-x86_64\bin</code></pre>
+                    which contains the binaries that we want to evoke.
+                </li>
+                <li>
+                    We modify the Windows path variable. For that, we need to access the "Advanced System Settings".
+                    Open the launcher and enter <code>Advanced System Settings</code>.
+                    Alternatively, open <code>Control Panel</code>, then <code>System and Security</code>, then <code>System</code>, then look for <code>Advanced System Settings</code>.
+                </li>
+                <li>
+                    Once that Windows is open, named <code>System Properties</code>, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
+                </li>
+                <li>
+                    In the first list, click on <code>Path</code> and then <code>Edit...</code>.
+                    Click on <code>New</code> and enter the path of the binary folder. In our example, <code>C:\llvm-mingw-20231003-msvcrt-x86_64\bin</code>. 
+                    Then click <code>OK</code> on all open dialogues.
+                </li>
+                <li>
+                    Congratulations, we should be ready now. 
+                    We can try either Git Bash, Cygwin, Windows Powershell, or the Methuselian cmd.exe. 
+                    All of these load the Windows path variable
+                    <ol style="margin-bottom: 1em; margin-top: 1em;">
+                        <li>
+                            Open any of those command prompts and enter <code>clang --version</code>. That should display some self-description of Clang, including the version number.
+                        </li>
+                        <li>
+                            Make has a different name in this package. Open any of the aforementioned command prompts and enter <code>mingw32-make --version</code>. 
+                            Again, you will receive the version output of your current make implementation.
+                        </li>
+                        <li>
+                            You can look up any of the other commands in the binary folder if you have need for something else.
+                        </li>
+                    </ol>
+                    One of word of caution: different command prompts give different priorities to different folders when looking for the command. 
+                    For example, Cygwin will first look in its own internal directories for <code>gcc</code>, so if your Cygwin installations already includes GCC, then Cygwin will pick that one.
+                    Typically, calling <code>make</code> in Cygwin will call the binary at <code>/usr/bin/make</code> but <code>mingw32-make</code> will be found in your Windows system.
+                </li>
+            </ol>
+        </article>
+
+        <article id="article-2">
+            <h1>Unix utilities on Windows PowerShell</h1>
+            <ol>
+                <li>
+                    One more issue concerning makefiles: 
+                    if your makefiles are developed for a Unix environment, then you may encounter difficulties when executing make on Windows. 
+                    Things will typically work fine when the shell is, say, <code>Git Bash</code>, which provides the most basic Unix utilities (such as <code>touch</code>, <code>cp</code>, and so on).
+                </li>
+                <li>
+                    However, it is desirable if we can also execute our makefile from Windows PowerShell.
+                    For example, some IDEs for Windows use PowerShell as their standard terminal. 
+                    We can to make the standard Unix tools available on PowerShell as follows, assuming that <code>Git Bash</code> has already been installed. 
+                </li>
+                <li>
+                    First, check the location of the binary files that come with Git Bash. For example, that folder might be
+                    <pre><code>C:\Program Files\Git\usr\bin\</code></pre>
+                    or whatever else is your installation folder for <code>Git Bash</code>.
+                </li>
+                <li>
+                    We once again modify the Windows path variable. 
+                    We open the launcher and enter <code>Advanced System Settings</code>.
+                    Alternatively, we open <code>Control Panel</code>, then <code>System and Security</code>, then <code>System</code>, then look for <code>Advanced System Settings</code>.
+                </li>
+                <li>
+                    Once that Windows is open, named <code>System Properties</code>, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
+                </li>
+                <li>
+                    In the first list, click on <code>Path</code> and then <code>Edit...</code>.
+                    Click on <code>New</code> and enter the path of the binary folder for <code>Git Bash</code>,
+                    as identified above. Then click <code>OK</code> on all open dialogues.
+                </li>
+                <li>
+                    Now the Unix commands that come with Git Bash should also be available in Windows PowerShell. 
+                    Congratulations, we should be ready now. 
+                    To test that, open a Windows PowerShell terminal, and type something like <code>touch --version</code>. 
+                    You should now see what you would expect on Linux as well. 
+                    Similarly, the same should now work on the classical Windows command line terminal. 
+                </li>
+            </ol>
+        </article>
+
+        <footer class="flex-item">
+                <i>
+                    Last Update: 
+                    <script language="JavaScript">
+                      var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+                      var mydate = new Date( document.lastModified );
+                      document.write( months[ mydate.getMonth() ] + " " + mydate.getDate() + ", " + mydate.getFullYear() );
+                    </script>
+                    <!-- November 2, 2021 -->
+                  <br>
+                  <a class=tarnkappe href="https://arxiv.org/abs/1710.06868">Martin Werner Licht</a>
+                  <a class=tarnkappe href="https://arxiv.org/abs/1612.02756">Martin Werner Licht</a>
+                  Martin W. Licht
+                </i>
+                <p>
+                    <a href="https://validator.w3.org/check?uri=martinlicht.github.io/git.html" target="_blank">
+                        <img src="https://www.w3.org/Icons/valid-html401.png" alt="Valid XHTML 1.0!" height="31" width="88">
+                    </a>
+                </p>
+        </footer>
+    
+    </body>
+    
+</html>

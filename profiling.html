@@ -1,0 +1,160 @@
+
+<!doctype html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="Martin Licht, Martin Werner Licht, Finite Element Exterior Calculus, Smoothed Projection">
+        <meta name="author" content="Martin Licht">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        
+        <link href="index.css" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title>
+            Martin W. Licht - Profiling C++ on Linux
+        </title>
+
+        <style>
+            pre { background-color: rgb(251, 255, 225); padding: 1em; }
+            ol li:not(:first-child) { margin-top: 1em; }
+        </style>
+    </head>
+    
+    <body class="flex-container">
+    
+        <header>
+            <nav>
+                <a href="index.html"><b>HOME</b></a>
+            </nav>
+        </header>
+
+        <article style="background-color: rgb(251, 255, 225)">
+            <h2>Profiling C++ on Linux</h2>
+
+            Profiling is an essential practice for software developers:
+            it helps in identifying the parts of the program which consume most of resources, whether it is CPU time or memory.
+            Consequently, profiling is crucial for deciding which parts of the source code should receive attention and for optimizing source code to run more efficiently.
+            This is especially important if you work on performance-critical applications in scientific computing. 
+            <br> 
+            <br> 
+            Several Profiling tools are available on Linux for profiling applications written in C++.
+            Here, we will focus on two main toolsets: 
+            on the one hand, using GProf, which is a terminal-based profiling tool, and on the other hand, using Valgrind together with Callgrind and KCachegrind, which includes a GUI.
+            <br> 
+            <br> 
+            I will only address tools for a Linux/Unix environment. There are other tools available on Windows. 
+            <ul class="toc">
+                <li><a href="#article-1">Profiling using Valgrind, Callgrind, and KCachegrind</a></li>
+                <li><a href="#article-2">Profiling using GProf</a></li>
+            </ul>
+        </article>
+        
+        <article id="article-1">
+            <h1>Profiling using Valgrind, Callgrind, and KCachegrind</h1>
+            <ol>
+                <li style="margin-top: 1em;">
+                    Valgrind is a versatile software suite.
+                    It consists of various components for debugging and profiling software. 
+                    The Callgrind component facilitates profiling. 
+                </li>
+                <li style="margin-top: 1em;">
+                    We must first compile the application with debugging information. 
+                    When using GCC for the compilation, we achieved this by using the <code>-g</code> option.
+                    The compiler will then embed debugging information into the executable. 
+                </li>
+                <li style="margin-top: 1em;">
+                    After compiling the program, we employ Valgrind's Callgrind tool to generate profiling data; 
+                    The following command tells Valgrind to run our program using the Callgrind tool. 
+                    <pre><code>
+                    valgrind --tool=callgrind [callgrind options] our_program [program options]
+                    </code></pre>
+                    We can specify various options for Callgrind to control its behavior, as well as pass arguments to our program as needed. 
+                </li>
+                <li style="margin-top: 1em;">
+                    Callgrind will generate a profiling data file named <code>callgrind.out.[pid]</code>, 
+                    where <code>[pid]</code> is the process ID of our program. 
+                    This file contains detailed profiling information, to be used by other programs. 
+                </li>
+                <li style="margin-top: 1em;">
+                    We analyze the data with KCachegrind, 
+                    which is a graphical user interface that presents the profiling information in a more accessible manner. 
+                    We open the generated file in KCachegrind with the following command:
+                    <pre><code>
+                        kcachegrind callgrind.out.[pid]
+                    </code></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    KCachegrind is a GUI tool to explore the data in the data file. 
+                    It can visualize the call graph, identify how often functions have been called, and how much time was spent in each function. 
+                </li>
+            </ol>
+        </article>
+
+
+        
+        <article id="article-2">
+            <h1>Profiling using GProf</h1>
+            <ol>
+                <li style="margin-top: 1em;">
+                    Another tool at our disposal is GProf, the GNU Profiler, which is a profiler that comes with the GNU Binutils suite. 
+                    This is not a graphical tool by itself, but it generates a flat profile and call graph analysis of our program. 
+                    This analysis provides insights into how often functions are called and how much time is spent in each function. 
+                </li>
+                <li style="margin-top: 1em;">
+                    To use GProf, we need to compile our program with the <code>-pg</code> option, 
+                    which enables profiling information to be included in the executable.
+                    The <code>-pg</code> must be part of both the compilation and the linking process,
+                    which is typically ensured by GCC. 
+                </li>
+                <li style="margin-top: 1em;">
+                    Running our program will now automatically create a file named <code>gmon.out</code>, which contains the profiling data. 
+                </li>
+                <li style="margin-top: 1em;">
+                    We can then analyze this data with GProf by executing the following command:
+                    <pre><code>
+                    gprof our_program gmon.out
+                    </code></pre>
+                </li>
+                <li style="margin-top: 1em;">
+                    This command will output the profiling analysis to the terminal.
+                    Here, we can see the time spent in each function and the call relationships between functions. 
+                    Note that GProf does not offer a GUI but is only text-based. 
+                    Its main application is as a tool that facilitates post-processing by scripts. 
+                    One strong advantage over GUI tools the GProf output can easily be incorporated in an automated profiling workflow.
+                </li>
+                <li style="margin-top: 1em;">
+                    Further information can be found in the official documentation:
+                    <a href="http://sourceware.org/binutils/docs/gprof/">http://sourceware.org/binutils/docs/gprof/</a>
+                </li>
+            </ol>
+        </article>
+
+
+        
+        <footer class="flex-item">
+                <i>
+                    Last Update: 
+                    <script language="JavaScript">
+                      var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+                      var mydate = new Date( document.lastModified );
+                      document.write( months[ mydate.getMonth() ] + " " + mydate.getDate() + ", " + mydate.getFullYear() );
+                    </script>
+                    <!-- November 2, 2021 -->
+                  <br>
+                  <a class=tarnkappe href="https://arxiv.org/abs/1710.06868">Martin Werner Licht</a>
+                  <a class=tarnkappe href="https://arxiv.org/abs/1612.02756">Martin Werner Licht</a>
+                  Martin W. Licht
+                </i>
+                <p>
+                    <a href="https://validator.w3.org/check?uri=martinlicht.github.io/git.html" target="_blank">
+                        <img src="https://www.w3.org/Icons/valid-html401.png" alt="Valid XHTML 1.0!" height="31" width="88">
+                    </a>
+                </p>
+        </footer>
+    
+    </body>
+    
+</html>
