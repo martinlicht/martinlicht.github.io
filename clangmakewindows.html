@@ -47,7 +47,7 @@
                 <li style="margin-top: 1em;">
                     Open your web browser and load the official project website of the MinGW-w64 project:
                     <pre class="highlight"><a href="https://www.mingw-w64.org/">https://www.mingw-w64.org/</a></pre>
-                    Actually, we can go straight to the download section:
+                    In fact, we can go straight to the download section:
                     <pre class="highlight"><a href="https://www.mingw-w64.org/downloads">https://www.mingw-w64.org/downloads</a></pre>
                 </li>
                 <li style="margin-top: 1em;">
@@ -60,7 +60,7 @@
                     Here, you find Zip-files that contain the precompiled binaries, for different processor architectures and operating systems. 
                 </li>
                 <li style="margin-top: 1em;">
-                    We need to understand which version to download. 
+                    We need to understand which version we want to download. 
                     A brief explanation is found on the project homepage on Github:
                     <pre class="highlight"><a href="https://github.com/mstorsjo/llvm-mingw#releases">https://github.com/mstorsjo/llvm-mingw#releases</a></pre>
                     We want to work on Windows directly, so we look for Zip-files called 
@@ -89,7 +89,7 @@
                                 <li><code>armv7</code>, which is the 32-bit architecture of ARM</li>
                                 <li style="margin-bottom: 1em;"><code>aarch64</code>, which is the 64-bit architecture of ARM</li>
                             </ul>
-                            The package contains binaries to compile <b>for</b> any of those architectures but these binaries only run <b>on</b> the specified architecture.
+                            All the possible packages contain binaries to compile <b>for</b> any of those architectures but these binaries only run <b>on</b> the specified architecture.
                             For that reason, you need look up which processor is being used on your machine and pick the appropriate package.
                         </li>
                     </ol>
@@ -98,7 +98,7 @@
                     You <b>must</b> adapt the following lines according to your choice of package, and likely your version number will be more advanced.
                     <br>
                     <br>
-                    Whatever you pick, download the Zip file.
+                    Whatever package you choose, download the Zip file.
                 </li>
             </ol>
         </article>
@@ -108,7 +108,7 @@
             <ol>
                 <li>
                     The installation begins with simply unpacking the .zip archive and transfering the folder to a convenient location. 
-                    For simplicity, we choose the put our copy to the top folder folder of the main drive <code>C:\</code>.
+                    For simplicity, we will put our copy to the top folder folder of the main drive <code>C:\</code>.
                     All the binaries are now contained in 
                     <pre><code>C:\llvm-mingw-20231003-msvcrt-x86_64</code></pre>
                 </li>
@@ -123,15 +123,15 @@
                     Alternatively, open <code>Control Panel</code>, then <code>System and Security</code>, then <code>System</code>, then look for <code>Advanced System Settings</code>.
                 </li>
                 <li>
-                    Once that Windows is open, named <code>System Properties</code>, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
+                    Once that the advanced system settings dialog is open, titled <code>System Properties</code>, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
                 </li>
                 <li>
                     In the first list, click on <code>Path</code> and then <code>Edit...</code>.
                     Click on <code>New</code> and enter the path of the binary folder. In our example, <code>C:\llvm-mingw-20231003-msvcrt-x86_64\bin</code>. 
-                    Then click <code>OK</code> on all open dialogues.
+                    Then click <code>OK</code> on all remaining open dialogues.
                 </li>
                 <li>
-                    Congratulations, we should be ready now. 
+                    The installations should be ready to use by now. 
                     We can try either Git Bash, Cygwin, Windows Powershell, or the Methuselian cmd.exe. 
                     All of these load the Windows path variable
                     <ol style="margin-bottom: 1em; margin-top: 1em;">
@@ -146,9 +146,11 @@
                             You can look up any of the other commands in the binary folder if you have need for something else.
                         </li>
                     </ol>
-                    One of word of caution: different command prompts give different priorities to different folders when looking for the command. 
-                    For example, Cygwin will first look in its own internal directories for <code>gcc</code>, so if your Cygwin installations already includes GCC, then Cygwin will pick that one.
-                    Typically, calling <code>make</code> in Cygwin will call the binary at <code>/usr/bin/make</code> but <code>mingw32-make</code> will be found in your Windows system.
+                    One of word of caution: 
+                    different command prompts will try to look up the corresponding in various places, prioritizing one folder over the other.
+                    For example, when calling <code>gcc</code>, Cygwin will first look in its own internal directories for <code>gcc</code> before any MinGW32 implementation, 
+                    so if your Cygwin installations already includes GCC, then Cygwin will pick that one.
+                    Another example: calling <code>make</code> in Cygwin will call the binary at <code>/usr/bin/make</code> but <code>mingw32-make</code> will be found in your Windows system.
                 </li>
             </ol>
         </article>
@@ -157,17 +159,18 @@
             <h1>Unix utilities on Windows PowerShell</h1>
             <ol>
                 <li>
-                    One more issue concerning makefiles: 
-                    if your makefiles are developed for a Unix environment, then you may encounter difficulties when executing make on Windows. 
+                    We focus now on Makefiles and their use via Windows PowerShell: 
+                    if your makefiles have been developed for a Unix environment, then you may encounter difficulties when executing make on Windows. 
                     Things will typically work fine when the shell is, say, <code>Git Bash</code>, which provides the most basic Unix utilities (such as <code>touch</code>, <code>cp</code>, and so on).
                 </li>
                 <li>
-                    However, it is desirable if we can also execute our makefile from Windows PowerShell.
+                    There are circumstances, however, where you also want to execute our makefile in Windows PowerShell.
                     For example, some IDEs for Windows use PowerShell as their standard terminal. 
-                    We can to make the standard Unix tools available on PowerShell as follows, assuming that <code>Git Bash</code> has already been installed. 
+                    But not all basic Unix utilities are available in their full capacity on Windows (e.g., <code>cp -p</code> is missing).
+                    We can make the standard Unix tools available on PowerShell as follows, assuming that <code>Git Bash</code> has already been installed. 
                 </li>
                 <li>
-                    First, check the location of the binary files that come with Git Bash. For example, that folder might be
+                    First, check the location of the binary files that come with Git Bash. For instance, that folder might be
                     <pre><code>C:\Program Files\Git\usr\bin\</code></pre>
                     or whatever else is your installation folder for <code>Git Bash</code>.
                 </li>
@@ -186,7 +189,6 @@
                 </li>
                 <li>
                     Now the Unix commands that come with Git Bash should also be available in Windows PowerShell. 
-                    Congratulations, we should be ready now. 
                     To test that, open a Windows PowerShell terminal, and type something like <code>touch --version</code>. 
                     You should now see what you would expect on Linux as well. 
                     Similarly, the same should now work on the classical Windows command line terminal. 
