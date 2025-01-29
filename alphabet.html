@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print A4 Page</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        .header {
+            width: 100%;
+            text-align: left;
+            top: 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        @media print {
+            .header, .footer {
+                position: fixed;
+            }
+            .header {
+                top: 0;
+            }
+            .footer {
+                bottom: 0;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18pt;
+            line-height: 1.6;
+            margin: 3em;
+            padding: 0;
+        }
+
+        .content {
+            margin-left:   0em;
+            margin-right:  0em;
+            margin-top:    0em;
+            margin-bottom: 0em;
+            column-count: 2;
+            column-gap: 1em;
+        }
+
+        .column {
+            display: inline-block;
+            width: 49%;
+            vertical-align: top;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+/*             break-inside: avoid; */
+            text-align: center
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20mm;
+            break-inside: avoid;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+-
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20mm;
+            break-inside: avoid;
+            border: 0.1em solid black;
+        }
+
+        table th, table td {
+            border-top: 0.1em solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        td:nth-child(1)
+        {
+            text-align: center;
+        }
+
+        td:nth-child(2), 
+        td:nth-child(3)
+        {
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+<!--    <div class="header">
+        <h3>Ancient Greek Alphabet</h3>
+    </div>-->
+    <h1>Latin Alphabet, Numbered</h1>
+    <div class="content">
+<!--         <div class="column"> -->
+            <table>
+                <table>
+                <tr>
+                    <th colspan="1">Number</th>
+                    <th>Letter</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>D</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>G</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>H</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>I</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>J</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>K</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>L</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>M</td>
+                </tr>
+            </table>
+            </table>
+<!--         </div> -->
+<!--         <div class="column"> -->
+            <table>
+                <!--<tr>
+                    <th>Letter</th>
+                    <th>Name</th>
+                </tr>-->
+                <table>
+                <tr>
+                    <th colspan="1">Number</th>
+                    <th>Letter</th>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>N</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>P</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Q</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>R</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>S</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>T</td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td>U</td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td>V</td>
+                </tr>
+                <tr>
+                    <td>23</td>
+                    <td>W</td>
+                </tr>
+                <tr>
+                    <td>24</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>Y</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>Z</td>
+                </tr>
+            </table>
+<!--         </div> -->
+    </div>
+</body>
+</html>
