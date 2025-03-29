@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB Swapper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+            max-width: 500px;
+            max-height: 500px;
+            width: auto;
+            height: auto;
+        }
+        #outputCanvas {
+            display: none;
+        }
+    </style>
+    <title>
+        Channel swapper
+    </title>
+</head>
+<body>
+    <h1>RGB Channel Swapper</h1>
+    <input type="file" id="imageInput" accept="image/*">
+    <select id="channelSwap">
+        <option value="RGB">RGB</option>
+        <option value="RBG">RBG</option>
+        <option value="GBR">GBR</option>
+        <option value="GRB">GRB</option>
+        <option value="BRG">BRG</option>
+        <option value="BGR">BGR</option>
+    </select>
+    <select id="noiseBits">
+        <option value="0">No noise</option>
+        <option value="1">1-bit</option>
+        <option value="2">2-bit</option>
+        <option value="3">3-bit</option>
+        <option value="4">4-bit</option>
+        <option value="5">5-bit</option>
+        <option value="6">6-bit</option>
+        <option value="7">7-bit</option>
+        <option value="8">8-bit</option>
+    </select>
+    <select id="noiseType">
+        <option value="random">Random noise</option>
+        <option value="zero">Zero out bits</option>
+    </select>
+    <select id="outputFormat">
+        <option value="same">Same as input</option>
+        <option value="image/png">PNG</option>
+        <option value="image/jpeg">JPEG</option>
+        <option value="image/webp">WEBP</option>
+    </select>
+    <button id="downloadButton">Download Processed Image</button>
+    <br>
+    <canvas id="originalCanvas"></canvas>
+    <canvas id="outputCanvas"></canvas>
+
+    <script language="JavaScript">
+        const imageInput     = document.getElementById('imageInput');
+        const channelSwap    = document.getElementById('channelSwap');
+        const noiseBits      = document.getElementById('noiseBits');
+        const noiseType      = document.getElementById('noiseType');
+        const originalCanvas = document.getElementById('originalCanvas');
+        const outputCanvas   = document.getElementById('outputCanvas');
+        const outputFormat   = document.getElementById('outputFormat');
+        const downloadButton = document.getElementById('downloadButton');
+
+        const originalCtx    = originalCanvas.getContext('2d');
+        const outputCtx      = outputCanvas.getContext('2d');
+
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if( file ) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const maxSize = 500;
+                        let width = img.width;
+                        let height = img.height;
+                        if( width > maxSize || height > maxSize ) {
+                            const scale = Math.min(maxSize / width, maxSize / height);
+                            width = Math.round(width * scale);
+                            height = Math.round(height * scale);
+                        }
+                        originalCanvas.width = width;
+                        originalCanvas.height = height;
+                        outputCanvas.width = width;
+                        outputCanvas.height = height;
+                        originalCtx.drawImage(img, 0, 0, width, height);
+                        processImage();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function processImage() {
+            const imageData   = originalCtx.getImageData( 0, 0, originalCanvas.width, originalCanvas.height );
+            const data        = imageData.data;
+            const swapMode    = channelSwap.value;
+            const noiseLevel  = parseInt(noiseBits.value);
+            const noiseOption = noiseType.value;
+            
+            function applyNoise(value) {
+                
+                // return immediately if no noise requested 
+                
+                if( noiseLevel === 0 ) return value;
+                
+                // mask for the lowest `value` bits
+                const mask = (1 << noiseLevel) - 1;
+                
+                // Either random flip some of the last bits 
+                // or you zero out the last ones 
+                if (noiseOption === 'random') {
+                    return value ^ ( Math.floor(Math.random() * (mask + 1)) );
+                } else {
+                    return value & ~mask;
+                }
+            }
+
+            // swap channels 
+            for (let i = 0; i < data.length; i += 4) {
+                let r = data[i], g = data[i + 1], b = data[i + 2];
+                switch( swapMode ) {
+                    case 'RGB': [r, g, b] = [r, g, b]; break;
+                    case 'RBG': [r, g, b] = [r, b, g]; break;
+                    case 'GBR': [r, g, b] = [g, b, r]; break;
+                    case 'GRB': [r, g, b] = [g, r, b]; break;
+                    case 'BRG': [r, g, b] = [b, r, g]; break;
+                    case 'BGR': [r, g, b] = [b, g, r]; break;
+                }
+                data[i] = applyNoise(r);
+                data[i + 1] = applyNoise(g);
+                data[i + 2] = applyNoise(b);
+            }
+
+            // set output canvas
+            outputCtx.putImageData(imageData, 0, 0);
+            outputCanvas.style.display = 'block';
+        }
+
+        [channelSwap, noiseBits, noiseType].forEach( el => el.addEventListener('change', processImage) );
+    </script>
+</body>
+</html>
