@@ -20,6 +20,12 @@
         #outputCanvas {
             display: none;
         }
+
+        .canvas-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
     <title>
         Channel swapper
@@ -51,6 +57,13 @@
         <option value="random">Random noise</option>
         <option value="zero">Zero out bits</option>
     </select>
+    <select id="scaleSelect">
+        <option value="100">100%</option>
+        <option value="75">75%</option>
+        <option value="50">50%</option>
+        <option value="25">25%</option>
+        <option value="5">5%</option>
+    </select>
     <select id="outputFormat">
         <option value="same">Same as input</option>
         <option value="image/png">PNG</option>
@@ -59,8 +72,10 @@
     </select>
     <button id="downloadButton">Download Processed Image</button>
     <br>
-    <canvas id="originalCanvas"></canvas>
-    <canvas id="outputCanvas"></canvas>
+    <div class="canvas-container">
+        <canvas id="originalCanvas"></canvas>
+        <canvas id="outputCanvas"></canvas>
+    </div>
 
     <script language="JavaScript">
         const imageInput     = document.getElementById('imageInput');
@@ -69,68 +84,117 @@
         const noiseType      = document.getElementById('noiseType');
         const originalCanvas = document.getElementById('originalCanvas');
         const outputCanvas   = document.getElementById('outputCanvas');
+        const scaleSelect    = document.getElementById('scaleSelect');
         const outputFormat   = document.getElementById('outputFormat');
         const downloadButton = document.getElementById('downloadButton');
 
         const originalCtx    = originalCanvas.getContext('2d');
         const outputCtx      = outputCanvas.getContext('2d');
 
+        const minSize = 50;
+
+        
+        //
+        // input is a pixel channel, and the noiseLevel/noiseOption configurations
+        // output is the new value of the pixel channel
+        // 
+        function applyNoise( value, noiseLevel, noiseOption ) {
+            
+            // return immediately if no noise requested 
+            
+            if( noiseLevel === 0 ) return value;
+            
+            // mask for the lowest `value` bits
+            const mask = (1 << noiseLevel) - 1;
+            
+            // Either random flip some of the last bits 
+            // or you zero out the last ones 
+            if (noiseOption === 'random') {
+                return value ^ ( Math.floor(Math.random() * (mask + 1)) );
+            } else {
+                return value & ~mask;
+            }
+        }
+
+            
+        
+        function rescaleImageData(imageData, newWidth, newHeight, targetCtx) {
+            
+            // Create a temporary canvas
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = imageData.width;
+            tempCanvas.height = imageData.height;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            // Put the original pixels into the temporary canvas
+            tempCtx.putImageData(imageData, 0, 0);
+            
+            // Draw the temp canvas into the target context scaled
+            targetCtx.clearRect(0, 0, newWidth, newHeight);
+            targetCtx.drawImage(tempCanvas, 0, 0, newWidth, newHeight);
+        }
+
+
         imageInput.addEventListener('change', function(event) {
+            
             const file = event.target.files[0];
+            
             if( file ) {
+                
                 const reader = new FileReader();
+                
                 reader.onload = function(e) {
+                    
                     const img = new Image();
+                    
                     img.onload = function() {
+                    
                         const maxSize = 500;
-                        let width = img.width;
-                        let height = img.height;
-                        if( width > maxSize || height > maxSize ) {
-                            const scale = Math.min(maxSize / width, maxSize / height);
-                            width = Math.round(width * scale);
-                            height = Math.round(height * scale);
+                        const selectedScale = parseInt(scaleSelect.value) / 100;
+                    
+                        let originalWidth = img.width;
+                        let originalHeight = img.height;
+                    
+                        if( originalWidth > maxSize || originalHeight > maxSize ) {
+                            const rescale = Math.min(maxSize / originalWidth, maxSize / originalHeight);
+                            originalWidth = Math.round(originalWidth * rescale);
+                            originalHeight = Math.round(originalHeight * rescale);
                         }
-                        originalCanvas.width = width;
-                        originalCanvas.height = height;
-                        outputCanvas.width = width;
-                        outputCanvas.height = height;
-                        originalCtx.drawImage(img, 0, 0, width, height);
-                        processImage();
+                    
+                        originalCanvas.width = originalWidth;
+                        originalCanvas.height = originalHeight;
+                        
+                        originalCtx.drawImage(img, 0, 0, originalWidth, originalHeight);
+                        
+                        outputCanvas.width  = Math.max( minSize, Math.round( originalWidth * selectedScale  ) );
+                        outputCanvas.height = Math.max( minSize, Math.round( originalHeight * selectedScale ) );
+                        updateImage();
                     };
+                    
                     img.src = e.target.result;
                 };
+
                 reader.readAsDataURL(file);
             }
         });
 
-        function processImage() {
+        function updateImage() {
+            
+            // get the original image data 
             const imageData   = originalCtx.getImageData( 0, 0, originalCanvas.width, originalCanvas.height );
             const data        = imageData.data;
+            
+            // obtain the swap and noise values
             const swapMode    = channelSwap.value;
             const noiseLevel  = parseInt(noiseBits.value);
             const noiseOption = noiseType.value;
+            const selectedScale = parseInt(scaleSelect.value) / 100;
             
-            function applyNoise(value) {
-                
-                // return immediately if no noise requested 
-                
-                if( noiseLevel === 0 ) return value;
-                
-                // mask for the lowest `value` bits
-                const mask = (1 << noiseLevel) - 1;
-                
-                // Either random flip some of the last bits 
-                // or you zero out the last ones 
-                if (noiseOption === 'random') {
-                    return value ^ ( Math.floor(Math.random() * (mask + 1)) );
-                } else {
-                    return value & ~mask;
-                }
-            }
-
-            // swap channels 
+            // swap channels and apply noise 
             for (let i = 0; i < data.length; i += 4) {
+                
                 let r = data[i], g = data[i + 1], b = data[i + 2];
+                
                 switch( swapMode ) {
                     case 'RGB': [r, g, b] = [r, g, b]; break;
                     case 'RBG': [r, g, b] = [r, b, g]; break;
@@ -139,17 +203,62 @@
                     case 'BRG': [r, g, b] = [b, r, g]; break;
                     case 'BGR': [r, g, b] = [b, g, r]; break;
                 }
-                data[i] = applyNoise(r);
-                data[i + 1] = applyNoise(g);
-                data[i + 2] = applyNoise(b);
+                
+                data[i] = applyNoise(r, noiseLevel, noiseOption );
+                data[i + 1] = applyNoise(g, noiseLevel, noiseOption );
+                data[i + 2] = applyNoise(b, noiseLevel, noiseOption );
             }
 
+
+            let originalWidth = originalCanvas.width;
+            let originalHeight = originalCanvas.height;
+            
+            let outputWidth =  originalWidth; 
+            let outputHeight = originalHeight; 
+
+            outputWidth  = Math.max( minSize, Math.round( originalWidth  * selectedScale ) ); 
+            outputHeight = Math.max( minSize, Math.round( originalHeight * selectedScale ) ); 
+            
+            outputCanvas.width = outputWidth;
+            outputCanvas.height = outputHeight;
+
+            rescaleImageData(
+                imageData, 
+                outputWidth, 
+                outputHeight, 
+                outputCtx
+            )
+            
             // set output canvas
-            outputCtx.putImageData(imageData, 0, 0);
+            // outputCtx.putImageData(imageData, 0, 0);
             outputCanvas.style.display = 'block';
         }
 
-        [channelSwap, noiseBits, noiseType].forEach( el => el.addEventListener('change', processImage) );
+        // 
+        // when changing the options, the output canvas is updated
+        // 
+        [channelSwap, noiseBits, noiseType, scaleSelect].forEach( 
+            el => el.addEventListener('change', updateImage) 
+        );
+
+        // 
+        // add the download functionality 
+        // 
+        downloadButton.addEventListener('click',()=>{
+            
+            const format=outputFormat.value;
+            
+            let mimeType = ( format !== 'same' ? format: 'image/png' );
+            
+            outputCanvas.toBlob(
+                blob => {
+                    const link=document.createElement('a');
+                    link.href=URL.createObjectURL(blob);
+                    link.download=`processed-image.${mimeType.split('/')[1]}`;
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                }, mimeType );
+        });
     </script>
 </body>
 </html>
