@@ -1,0 +1,50 @@
+name: Monthly HTML and CSS check
+
+on:
+  schedule:
+    # First day of every month, 03:00 Europe/Amsterdam.
+    - cron: "0 3 1 * *"
+      timezone: "Europe/Amsterdam"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vnu:
+    name: Validate HTML and CSS with v.Nu
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check HTML and CSS files
+        run: |
+          set -euo pipefail
+
+          docker run --rm \
+            -v "$PWD:/data:ro" \
+            ghcr.io/validator/validator:latest \
+            sh -c '
+              set -e
+
+              files=$(find /data \
+                -type f \
+                \( \
+                  -name "*.html" -o \
+                  -name "*.htm" -o \
+                  -name "*.xhtml" -o \
+                  -name "*.xht" -o \
+                  -name "*.css" \
+                \) \
+                -not -path "/data/.git/*")
+
+              if [ -z "$files" ]; then
+                echo "No HTML or CSS files found."
+                exit 0
+              fi
+
+              echo "$files" | xargs vnu --errors-only
+            '
