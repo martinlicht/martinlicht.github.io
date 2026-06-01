@@ -36,7 +36,7 @@ jobs:
                   -name "*.html" -o \
                   -name "*.htm" -o \
                   -name "*.xhtml" -o \
-                  -name "*.xht" -o \
+                  -name "*.xht" \
                 \) \
                 -not -path "/data/.git/*")
 
