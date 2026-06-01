@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print A4 Page</title>
+    <title>Latin Alphabet</title>
     <style>
         @page {
             size: A4;
             margin: 20mm;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         .header {
@@ -15,18 +19,6 @@
             text-align: left;
             top: 0;
             border-bottom: 1px solid #ccc;
-        }
-
-        @media print {
-            .header, .footer {
-                position: fixed;
-            }
-            .header {
-                top: 0;
-            }
-            .footer {
-                bottom: 0;
-            }
         }
 
         body {
@@ -38,40 +30,20 @@
         }
 
         .content {
-            margin-left:   0em;
-            margin-right:  0em;
-            margin-top:    0em;
-            margin-bottom: 0em;
-            column-count: 2;
-            column-gap: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            align-items: flex-start;
         }
 
-        .column {
-            display: inline-block;
-            width: 49%;
-            vertical-align: top;
+        .table-block {
+            flex: 1 1 18em;
+            min-width: min(100%, 18em);
         }
 
         h1, h2, h3 {
             color: #333;
-/*             break-inside: avoid; */
-            text-align: center
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20mm;
-            break-inside: avoid;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
--
-        th, td {
-            padding: 8px;
-            text-align: left;
+            text-align: center;
         }
 
         table {
@@ -82,34 +54,86 @@
             border: 0.1em solid black;
         }
 
-        table th, table td {
+        th, td {
             border-top: 0.1em solid black;
             padding: 8px;
             text-align: left;
         }
-        
-        td:nth-child(1)
-        {
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        td:nth-child(1) {
             text-align: center;
         }
 
-        td:nth-child(2), 
-        td:nth-child(3)
-        {
+        td:nth-child(2),
+        td:nth-child(3) {
             text-align: left;
         }
 
+        @media screen and (max-width: 700px) {
+            body {
+                margin: 1em;
+                font-size: 14pt;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .table-block {
+                width: 100%;
+                flex-basis: auto;
+            }
+        }
+        
+        @media print {
+            .header, .footer {
+                position: fixed;
+            }
+
+            .header {
+                top: 0;
+            }
+
+            .footer {
+                bottom: 0;
+            }
+            
+            body {
+                margin: 0;
+            }
+        
+            .content {
+                flex-wrap: nowrap;
+            }
+
+            .table-block {
+                flex: 1 1 0;
+                min-width: 0;
+            }
+
+            table {
+                margin-bottom: 0;
+            }
+            
+            table, th, td {
+                border: 0.1em solid black;
+            }
+            
+            
+        }
+
+        
     </style>
 </head>
 <body>
-<!--    <div class="header">
-        <h3>Ancient Greek Alphabet</h3>
-    </div>-->
     <h1>Latin Alphabet, Numbered</h1>
     <div class="content">
-<!--         <div class="column"> -->
+        <div class="table-block">
             <table>
-                <table>
                 <tr>
                     <th colspan="1">Number</th>
                     <th>Letter</th>
@@ -167,15 +191,9 @@
                     <td>M</td>
                 </tr>
             </table>
-            </table>
-<!--         </div> -->
-<!--         <div class="column"> -->
+        </div>
+        <div class="table-block">
             <table>
-                <!--<tr>
-                    <th>Letter</th>
-                    <th>Name</th>
-                </tr>-->
-                <table>
                 <tr>
                     <th colspan="1">Number</th>
                     <th>Letter</th>
@@ -233,7 +251,7 @@
                     <td>Z</td>
                 </tr>
             </table>
-<!--         </div> -->
+        </div>
     </div>
 </body>
 </html>
