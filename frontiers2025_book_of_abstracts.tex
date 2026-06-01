@@ -1,0 +1,169 @@
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xparse}
+\usepackage[hidelinks]{hyperref}
+
+%----------------------------
+% Workshop metadata
+%----------------------------
+\newcommand{\workshoptitle}{Frontiers in Numerical Methods for Partial Differential Equations}
+\newcommand{\workshopwhenwhere}{Lausanne, Oct 8--10, 2025}
+
+%----------------------------
+% Talk macro
+% \Talk[Affiliation]{Speaker}{Title}{Abstract}
+% Affiliation is optional; omit the [] if unknown.
+%----------------------------
+\NewDocumentCommand{\Talk}{ O{} m m +m }{%
+  \vspace{1.25em}
+  \noindent\textbf{#2}\IfNoValueTF{#1}{}{ \textit{(#1)}}\\[0.25em]
+  \textit{#3}\\[0.5em]
+  \setstretch{1.05}#4\par
+}
+
+%----------------------------
+% Section formatting
+%----------------------------
+\titleformat{\section}{\large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+%----------------------------
+% Document
+%----------------------------
+\begin{document}
+
+\begin{center}
+  {\LARGE \workshoptitle\par}
+  \vspace{0.5em}
+  {\large \workshopwhenwhere\par}
+\end{center}
+
+\vspace{1em}
+\hrule
+\vspace{1em}
+
+\section*{Abstracts}
+
+%============================
+% Example entries
+%============================
+
+\Talk[Affiliation]{Anna Balci}{Analysis and numerics for nonlinear problems with differential forms}{%
+This research systematically analyzes boundary value problems for differential forms in variable exponent spaces, covering the Hodge Laplacian, div-curl, Hodge-Dirac, and Bogovskii systems. We establish existence theorems and crucial elliptic estimates, which in turn yield the Hodge decomposition, Gaffney inequality, and gauge fixing results essential for the associated nonlinear theory. Applying these regularity findings, we also derive new error estimates for FEM approximations of related nonlinear problems involving differential forms. This work stems from collaborations with A. Kaltenbach, S. Sil, and M. Surnachev.%
+}
+
+\Talk{Jerome Droniou}{Maxwell compactness for a polytopal de Rham complex}{%
+The well-posedness of some PDE models (e.g., the magnetostatics, the Stokes or the Maxwell equations) rely on properties of the de Rham complex, a sequence of spaces linked with the differential operators gradient, curl and divergence. Designing robust schemes for such models requires to create discrete versions of this complex that reproduce at least some (depending on the model) of its algebraic properties -- such as its exactness
+in trivial topology or, more generally, its cohomology in general domains. Additionally, these discretisations must satisfy suitable primal and adjoint consistency properties to ensure the accuracy of the scheme. When analysing eigenvalue or nonlinear models, another feature of the de Rham operators is crucial: their compactness properties. Discrete complexes must also satisfy these compactness properties, to be robust options for such models.
+ 
+Polytopal (de Rham) complexes are arbitrary-order discrete versions of de Rham complex, that are applicable on meshes made of generic polygons (in 2D) or polyhedra (in 3D). Such methods include, in particular, Virtual Element Methods and the Discrete DeRham (DDR) method. Many features of polytopal complexes -- e.g., their cohomology, their consistency, Poincaré inequalities, etc. -- have been studied in the last few years but, so far, the only known compactness properties was for the discrete version of the gradient
+(Discrete Rellich theorem). Their ``Maxwell compactness'', involving sequences with bounded/vanishing curl and divergence, was still an open question.
+  
+In this talk, I will present the first Maxwell compactness result for a polytopal complex. The proof is based on a recent continuous lifting, as well as on the design of quasi-interpolators (also a novelty for polytopal complexes). I will present it for the DDR complex, but many elements are easily generalisable to other polytopal complexes.
+  
+This is a joint work with Th\'eophile Chaumont-Frelet and Simon Lemaire.%
+}
+
+
+
+\Talk{Patrick Farrell}{Designing conservative and accurately dissipative numerical integrators in time}{%
+Numerical methods for the simulation of transient systems with structure-preserving properties are known to exhibit greater accuracy and physical reliability, in particular over long durations. These schemes are often built on powerful geometric ideas for broad classes of problems, such as Hamiltonian or reversible systems. However, there remain difficulties in devising higher-order-in-time structure-preserving discretizations for nonlinear problems, and in conserving non-polynomial invariants.
+
+In this work we propose a new, general framework for the construction of structure-preserving timesteppers via finite elements in time and the systematic introduction of auxiliary variables. The framework reduces to Gauss methods where those are structure-preserving, but extends to generate arbitrary-order structure-preserving schemes for nonlinear problems, and allows for the construction of schemes that conserve multiple higher-order invariants.
+
+We demonstrate the ideas by devising novel schemes that exactly conserve all known invariants of the Kepler and Kovalevskaya problems, arbitrary-order schemes for the compressible Navier-Stokes equations that conserve mass, momentum, and energy, and provably dissipate entropy, and energy-conservative schemes for the Benjamin-Bona-Mahony equation.
+}
+
+\Talk{Dietmar Gallistl}{Minimal residual discretization of a class of fully nonlinear elliptic PDE (joint work with Ngoc Tien Tran)}{%
+This talk introduces finite element methods for a class of elliptic fully nonlinear partial differential equations. They are based on a minimal residual principle that builds upon the Alexandrov--Bakelman--Pucci estimate. Under rather general structural assumptions on the operator, convergence of $C^1$ conforming and discontinuous Galerkin methods is proven in the $L^\infty$ norm. Numerical experiments on the performance of adaptive mesh refinement driven by local information of the residual in two and three space dimensions are provided.
+}
+
+\Talk{Martin Halla}{Construction of stable finite element methods for the simulation of solar oscillations}{%
+Helioseismology studies the interior of the Sun through acoustic oscillations measured at the surface. Reconstructing physical quantities in the interior, such as the density, the sound speed, or subsurface flows, requires solving a passive imaging problem. The related forward problem, which models the oscillation of the Sun, is the Galbrun-type equation. This PDE is sign-indefinite even in its principal part. We discuss the well-posedness of this PDE and the construction of stable finite element discretizations.
+}
+
+\Talk{Hanne Hardering}{Geometric Finite Elements for a Cosserat Shell Model}{%
+A Cosserat shell model with curvature has been proposed to account for non-classical size effects in bending problems. A key characteristic of this model is its frame indifference, and the fact that the objective functions take their values in the nonlinear space $\mathbb{R}^3 \times SO(3)$. This geometric nonlinearity poses challenges for conventional finite element methods, which are typically designed for linear spaces.
+
+To address these difficulties, geometric finite elements -- finite element methods of arbitrary order specifically constructed for mappings into Riemannian manifolds -- have been developed and applied to the discretization of the Cosserat shell model. While a general numerical analysis framework for geometric finite elements for second-order elliptic problems is available, the particular structure of the Cosserat energy functional does not satisfy the stringent conditions required for a direct application of existing theory.
+
+This talk will present the geometric finite element framework and its adaptation to the Cosserat shell model. Optimal a priori error estimates are shown both analytically and numerically.
+}
+
+\Talk{Daniel Peterseim}{Computational Relaxation Techniques for Enhanced Damage Modeling}{%
+Damage modeling plays a central role in the prediction of failure in engineering materials. Classical continuum damage formulations, however, are challenged by the loss of convexity in their incremental variational principles, leading to mesh dependence and loss of reliability in numerical simulations.
+
+Computational relaxation techniques provide a robust alternative by enabling the consistent approximation of homogenized microstructures and delivering mesh-independent solutions. This talk discusses recent progress in the computational realization of such methods, with a particular focus on semi-convexification strategies. Polyconvexification achieves dimensionality reduction by exploiting structural properties of the model, while rank-one convexification offers a more general framework that has recently become computationally tractable through tailored numerical schemes.
+
+These developments enhance the stability, efficiency, and scalability of variational damage models, enabling the simulation of three-dimensional strain-softening and other complex nonlinear material phenomena relevant to engineering applications.
+}
+
+
+
+\Talk{Barbara Verfürth}{(Iterative) numerical multiscale methods for nonlinear problems}{%
+In this talk, we discuss the design and analysis of numerical methods for nonlinear diffusion problems with spatial multiscale coefficients. In the first approach, we propose to construct one single multiscale space, based on linearized problems, and to use it in a Galerkin method for the nonlinear problem. As we illustrate theoretically and numerically, this yields the expected convergence rates with respect to the mesh size up to a linearization error, which appears to be rather small in many examples. 
+
+In the second approach, we construct a multiscale space in each step of an iterative scheme for the nonlinear problem. Again, we discuss a priori error estimates and numerical examples. This is partly based on joint work with Maher Khrais.
+}
+
+\Talk{Simon Praetorius}{Isoparametric Finite Element Methods for Mean Curvature Flow and Surface Diffusion}{%
+\textit{Joint work with Harald Garcke (University of Regensburg), Robert Nürnberg (University of Trento), and Ganghui Zhang (Tsinghua University).}
+
+In this talk, I will present new higher-order isoparametric finite element methods for geometric evolution equations, with a focus on mean curvature flow and surface diffusion. Our approach extends the well-known piecewise linear methods developed by Barrett, Garcke, and Nürnberg (2007–2008) to higher-order accuracy, while preserving the favorable geometric and numerical properties of the original schemes. 
+
+The proposed methods are unconditionally energy stable and maintain high mesh quality throughout the evolution. For surface diffusion, we develop structure-preserving variants that not only retain unconditional stability but also conserve the enclosed volume. Extensive numerical experiments illustrate the higher-order convergence, energy dissipation properties, volume conservation, and robustness of the schemes even under small timesteps and long-time simulations.
+}
+
+\Talk{Ralf Hiptmair}{A review of dual-field mixed FEM for flow problems}{%
+Dual-field mixed finite element methods for the incompressible Navier-Stokes equations start from the velocity-vorticity (rotational) form of the equations with non-standard boundary conditions. They employ two different variational formulations that are both posed on the function
+spaces $H(\mathbf{div}, \Omega)$ and $H(\mathbf{curl}, \Omega)$ for velocity and vorticity. These variational formulations are coupled through the non-linear convective terms. Finite element discretization is done in the spirit of finite element exterior calculus (FEEC) relying on discrete differential forms. This is combined with a second-order semi-implicit timestepping on a staggered temporal grid. The resulting scheme possess amazing structure-preserving properties, conserving kinetic energy and helicity in the inviscid limit The approach can be extended to incompressible, resistive, magnetohydrodynamics (MHD) by augmenting two weak Navier-Stokes equations with a pair of dual variational formulations of the magnetoquasistatic evolution equations. Then FEEC discretization and staggered semi-implicit timestepping will yield a scheme that exactly preserves total energy and magnetic/fluid helicity.
+}
+
+\Talk{Iain Smears}{Analysis and numerical analysis of mean field games with nondifferentiable Hamiltonians}{%
+Mean field games (MFG) are models for the Nash equilibria of differential games involving large numbers of players, where each player is solving a dynamic optimal control problem that depends on the overall distribution of players across the state space of the game. In a standard formulation, these result in a coupled quasilinear system of partial differential equations (PDEs), involving the Hamilton–Jacobi–Bellman (HJB) equation for the value function and the Fokker–Planck equation for the density of players over the state space of the game.
+
+In this talk, we present recent work on the analysis and numerical solution of MFG problems where the Hamiltonian of the HJB equation is nondifferentiable, in which case the usual PDE system is not well-defined. In applications, nondifferentiability of the Hamiltonian is related to the possible lack of uniqueness of optimal controls. We show that the system can be generalized to a system of partial differential inclusions (PDI) where the quasilinear term becomes set-valued through the subdifferential of the Hamiltonian. 
+
+We present theorems on the existence of solutions under general conditions on the problem data, and uniqueness for problems with strictly monotone couplings. We show that these problems can be solved numerically by stabilized first-order conforming finite element methods, with proofs of convergence in the general case and a priori rates of convergence for problems with strongly monotone couplings. 
+
+This talk is based on joint work with Yohance A.~P.~Osborne (Durham) and Harry Wells (UCL).
+}
+
+\Talk{Zhaonan Dong}{$\boldsymbol{H}(\textbf{curl})$-reconstruction of piecewise polynomial fields with application to $hp$-a posteriori nonconforming error analysis for Maxwell's equations}{%
+We devise and analyse a novel $\boldsymbol{H}(\textbf{curl})$-reconstruction operator for piecewise polynomial fields on shape-regular simplicial meshes. The (non-polynomial) reconstruction is devised over the mesh vertex patches using the partition of unity induced by hat basis functions in combination with local Helmholtz decompositions. Our main focus is on homogeneous tangential boundary conditions. 
+
+We prove that the difference between the reconstructed $\boldsymbol{H}_0(\textbf{curl})$-field and the original, piecewise polynomial field, measured in the broken curl norm and in the $\boldsymbol{L}^2$-norm, can be bounded in terms of suitable jump norms of the original field. The bounds are always $h$-optimal, and $p$-suboptimal by $\tfrac12$-order for the broken curl norm and by $\tfrac32$-order for the $\boldsymbol{L}^2$-norm. 
+
+An auxiliary result of independent interest is a novel broken-curl, divergence-preserving Poincaré inequality on vertex patches. Moreover, the $\boldsymbol{L}^2$-norm estimate can be improved to $\tfrac12$-order suboptimality under a (reasonable) assumption on the uniform elliptic regularity pickup for a Poisson problem with Neumann conditions over the vertex patches. We also discuss extensions of the $\boldsymbol{H}_0(\textbf{curl})$-reconstruction operator to the prescription of mixed boundary conditions, to agglomerated polytopal meshes, and to convex domains. 
+
+Finally, we showcase an application of the $\boldsymbol{H}(\textbf{curl})$-reconstruction operator to the $hp$-a posteriori nonconforming error analysis of Maxwell's equations. We focus on the symmetric interior penalty discontinuous Galerkin (dG) approximation of simplified forms of Maxwell's equations. 
+
+This is joint work with Alexandre Ern.
+}
+
+\Talk{Alexandre Ern}{Convergence of ERK-DG approximations of the first-order form of Maxwell's equations with low regularity}{%
+We establish a convergence result for the approximation of low-regularity solutions to time-dependent PDE systems that have an involution structure similar to Maxwell's equations and the linear wave equations. The approximation is based on an explicit Runge–Kutta (ERK) time-stepping and the discontinuous Galerkin (dG) method with stabilization (so-called upwind fluxes) in space. 
+
+The regularity setting assumes that the exact solution and its first time-derivative are in $L^\infty(0,T;H^s(\Omega))$ with a Sobolev regularity index $s \in (0,\tfrac12)$ (where $T$ is the time horizon and $\Omega$ the space domain), and that its second time-derivative is in $L^\infty(J;L^2(\Omega))$. The two main tools for the convergence analysis are a Ritz projection in space that leverages recent convergence results in operator norm for the dG approximation of the steady form of the PDE, and the $L^2$-stability under a standard CFL condition of three-stage, third-order and four-stage, fourth-order ERK schemes. 
+
+These latter results are known in the literature, but we provide a simplified proof of $L^2$-stability. 
+
+This is joint work with J.-L.~Guermond (Texas A\&M).
+}
+
+
+
+
+\end{document}
+
