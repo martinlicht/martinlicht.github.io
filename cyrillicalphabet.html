@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyrillic Alphabet</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .header {
+            width: 100%;
+            text-align: left;
+            top: 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            margin: 3em;
+            padding: 0;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            align-items: flex-start;
+        }
+
+        .table-block {
+            flex: 1 1 18em;
+            min-width: min(100%, 18em);
+        }
+
+        h1, h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20mm;
+            break-inside: avoid;
+            border: 0.1em solid black;
+        }
+
+        th, td {
+            border-top: 0.1em solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        td:nth-child(1),
+        td:nth-child(2) {
+            text-align: center;
+            font-size: 12pt;
+        }
+
+        td:nth-child(3) {
+            text-align: left;
+            font-size: 12pt;
+        }
+
+        .russian-only {
+            color: orange;
+        }
+
+        .ukranian-only {
+            color: blue;
+        }
+
+        @media screen and (max-width: 700px) {
+            body {
+                margin: 1em;
+                font-size: 12pt;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .table-block {
+                width: 100%;
+                flex-basis: auto;
+            }
+        }
+
+        @media print {
+            .header, .footer {
+                position: fixed;
+            }
+
+            .header {
+                top: 0;
+            }
+
+            .footer {
+                bottom: 0;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .content {
+                flex-wrap: nowrap;
+            }
+
+            .table-block {
+                flex: 1 1 0;
+                min-width: 0;
+            }
+
+            table {
+                margin-bottom: 0;
+            }
+
+            table, th, td {
+                border: 0.1em solid black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Cyrillic Alphabet: Russian and Ukrainian</h1>
+    <div class="content">
+        <div class="table-block">
+            <table>
+                <tr>
+                    <th colspan="2">Letter</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>А</td>
+                    <td>а</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>Б</td>
+                    <td>б</td>
+                    <td>Be</td>
+                </tr>
+                <tr>
+                    <td>В</td>
+                    <td>в</td>
+                    <td>Ve</td>
+                </tr>
+                <tr>
+                    <td>Г</td>
+                    <td>г</td>
+                    <td>Ge / He</td>
+                </tr>
+                <tr class="ukranian-only">
+                    <td>Ґ</td>
+                    <td>ґ</td>
+                    <td>Ge</td>
+                </tr>
+                <tr>
+                    <td>Д</td>
+                    <td>д</td>
+                    <td>De</td>
+                </tr>
+                <tr>
+                    <td>Е</td>
+                    <td>е</td>
+                    <td>Ye / E</td>
+                </tr>
+                <tr class="russian-only">
+                    <td>Ё</td>
+                    <td>ё</td>
+                    <td>Yo</td>
+                </tr>
+                <tr class="ukranian-only">
+                    <td>Є</td>
+                    <td>є</td>
+                    <td>Ye</td>
+                </tr>
+                <tr>
+                    <td>Ж</td>
+                    <td>ж</td>
+                    <td>Zhe</td>
+                </tr>
+                <tr>
+                    <td>З</td>
+                    <td>з</td>
+                    <td>Ze</td>
+                </tr>
+                <tr>
+                    <td>И</td>
+                    <td>и</td>
+                    <td>I / Y</td>
+                </tr>
+                <tr class="ukranian-only">
+                    <td>І</td>
+                    <td>і</td>
+                    <td>I</td>
+                </tr>
+                <tr class="ukranian-only">
+                    <td>Ї</td>
+                    <td>ї</td>
+                    <td>Yi</td>
+                </tr>
+                <tr>
+                    <td>Й</td>
+                    <td>й</td>
+                    <td>Short I</td>
+                </tr>
+                <tr>
+                    <td>К</td>
+                    <td>к</td>
+                    <td>Ka</td>
+                </tr>
+                <tr>
+                    <td>Л</td>
+                    <td>л</td>
+                    <td>El</td>
+                </tr>
+                <tr>
+                    <td>М</td>
+                    <td>м</td>
+                    <td>Em</td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-block">
+            <table>
+                <tr>
+                    <th colspan="2">Letter</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>Н</td>
+                    <td>н</td>
+                    <td>En</td>
+                </tr>
+                <tr>
+                    <td>О</td>
+                    <td>о</td>
+                    <td>O</td>
+                </tr>
+                <tr>
+                    <td>П</td>
+                    <td>п</td>
+                    <td>Pe</td>
+                </tr>
+                <tr>
+                    <td>Р</td>
+                    <td>р</td>
+                    <td>Er</td>
+                </tr>
+                <tr>
+                    <td>С</td>
+                    <td>с</td>
+                    <td>Es</td>
+                </tr>
+                <tr>
+                    <td>Т</td>
+                    <td>т</td>
+                    <td>Te</td>
+                </tr>
+                <tr>
+                    <td>У</td>
+                    <td>у</td>
+                    <td>U</td>
+                </tr>
+                <tr>
+                    <td>Ф</td>
+                    <td>ф</td>
+                    <td>Ef</td>
+                </tr>
+                <tr>
+                    <td>Х</td>
+                    <td>х</td>
+                    <td>Kha</td>
+                </tr>
+                <tr>
+                    <td>Ц</td>
+                    <td>ц</td>
+                    <td>Tse</td>
+                </tr>
+                <tr>
+                    <td>Ч</td>
+                    <td>ч</td>
+                    <td>Che</td>
+                </tr>
+                <tr>
+                    <td>Ш</td>
+                    <td>ш</td>
+                    <td>Sha</td>
+                </tr>
+                <tr>
+                    <td>Щ</td>
+                    <td>щ</td>
+                    <td>Shcha</td>
+                </tr>
+                <tr class="russian-only">
+                    <td>Ъ</td>
+                    <td>ъ</td>
+                    <td>Hard Sign</td>
+                </tr>
+                <tr class="russian-only">
+                    <td>Ы</td>
+                    <td>ы</td>
+                    <td>Yery</td>
+                </tr>
+                <tr>
+                    <td>Ь</td>
+                    <td>ь</td>
+                    <td>Soft Sign</td>
+                </tr>
+                <tr class="russian-only">
+                    <td>Э</td>
+                    <td>э</td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td>Ю</td>
+                    <td>ю</td>
+                    <td>Yu</td>
+                </tr>
+                <tr>
+                    <td>Я</td>
+                    <td>я</td>
+                    <td>Ya</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

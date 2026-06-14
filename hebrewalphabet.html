@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebrew Alphabet</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .header {
+            width: 100%;
+            text-align: left;
+            top: 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18pt;
+            line-height: 1.6;
+            margin: 3em;
+            padding: 0;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            align-items: flex-start;
+        }
+
+        .table-block {
+            flex: 1 1 18em;
+            min-width: min(100%, 18em);
+        }
+
+        h1, h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20mm;
+            break-inside: avoid;
+            border: 0.1em solid black;
+        }
+
+        th, td {
+            border-top: 0.1em solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        td:nth-child(1),
+        td:nth-child(2) {
+            text-align: center;
+            direction: rtl;
+            font-size: 22pt;
+        }
+
+        td:nth-child(3) {
+            text-align: left;
+            direction: ltr;
+            font-size: 18pt;
+        }
+
+        @media screen and (max-width: 700px) {
+            body {
+                margin: 1em;
+                font-size: 14pt;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .table-block {
+                width: 100%;
+                flex-basis: auto;
+            }
+        }
+
+        @media print {
+            .header, .footer {
+                position: fixed;
+            }
+
+            .header {
+                top: 0;
+            }
+
+            .footer {
+                bottom: 0;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .content {
+                flex-wrap: nowrap;
+            }
+
+            .table-block {
+                flex: 1 1 0;
+                min-width: 0;
+            }
+
+            table {
+                margin-bottom: 0;
+            }
+
+            table, th, td {
+                border: 0.1em solid black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hebrew Alphabet</h1>
+    <div class="content">
+        <div class="table-block">
+            <table>
+                <tr>
+                    <th colspan="2">Letter</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>א</td>
+                    <td></td>
+                    <td>Aleph</td>
+                </tr>
+                <tr>
+                    <td>ב</td>
+                    <td></td>
+                    <td>Bet</td>
+                </tr>
+                <tr>
+                    <td>ג</td>
+                    <td></td>
+                    <td>Gimel</td>
+                </tr>
+                <tr>
+                    <td>ד</td>
+                    <td></td>
+                    <td>Dalet</td>
+                </tr>
+                <tr>
+                    <td>ה</td>
+                    <td></td>
+                    <td>He</td>
+                </tr>
+                <tr>
+                    <td>ו</td>
+                    <td></td>
+                    <td>Vav</td>
+                </tr>
+                <tr>
+                    <td>ז</td>
+                    <td></td>
+                    <td>Zayin</td>
+                </tr>
+                <tr>
+                    <td>ח</td>
+                    <td></td>
+                    <td>Het</td>
+                </tr>
+                <tr>
+                    <td>ט</td>
+                    <td></td>
+                    <td>Tet</td>
+                </tr>
+                <tr>
+                    <td>י</td>
+                    <td></td>
+                    <td>Yod</td>
+                </tr>
+                <tr>
+                    <td>כ</td>
+                    <td>ך</td>
+                    <td>Kaf</td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-block">
+            <table>
+                <tr>
+                    <th colspan="2">Letter</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>ל</td>
+                    <td></td>
+                    <td>Lamed</td>
+                </tr>
+                <tr>
+                    <td>מ</td>
+                    <td>ם</td>
+                    <td>Mem</td>
+                </tr>
+                <tr>
+                    <td>נ</td>
+                    <td>ן</td>
+                    <td>Nun</td>
+                </tr>
+                <tr>
+                    <td>ס</td>
+                    <td></td>
+                    <td>Samekh</td>
+                </tr>
+                <tr>
+                    <td>ע</td>
+                    <td></td>
+                    <td>Ayin</td>
+                </tr>
+                <tr>
+                    <td>פ</td>
+                    <td>ף</td>
+                    <td>Pe</td>
+                </tr>
+                <tr>
+                    <td>צ</td>
+                    <td>ץ</td>
+                    <td>Tsadi</td>
+                </tr>
+                <tr>
+                    <td>ק</td>
+                    <td></td>
+                    <td>Qof</td>
+                </tr>
+                <tr>
+                    <td>ר</td>
+                    <td></td>
+                    <td>Resh</td>
+                </tr>
+                <tr>
+                    <td>ש</td>
+                    <td></td>
+                    <td>Shin</td>
+                </tr>
+                <tr>
+                    <td>ת</td>
+                    <td></td>
+                    <td>Tav</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
