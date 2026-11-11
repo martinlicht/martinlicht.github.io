@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="keywords" content="Martin Licht, Martin Werner Licht, Finite Element Exterior Calculus, Smoothed Projection">
         <meta name="author" content="Martin Licht">
-        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link href="index.css" rel="stylesheet" type="text/css">
         
@@ -33,16 +33,16 @@
         </header>
 
         <article style="background-color: rgb(251, 255, 225)">
-            <h2>Using Clang++ and Make natively on Windows</h2>
+            <h1>Using Clang++ and Make natively on Windows</h1>
 
-            This guide will explain you how to install Clang++ and Make on Windows:
+            This guide will explain how to install Clang++ and Make on Windows:
             specifically, we will discuss the MinGW-w64 project. 
             <br><br>
             In my experience, getting these programs to run natively on Windows is faster than calling them from within emulation layers such as Cygwin.
         </article>
         
         <article id="article-1">
-            <h1>Downloads</h1>
+            <h2>Downloads</h2>
             <ol>
                 <li style="margin-top: 1em;">
                     Open your web browser and load the official project website of the MinGW-w64 project:
@@ -52,7 +52,7 @@
                 </li>
                 <li style="margin-top: 1em;">
                     You find several links to different packages of MinGW-w64 bundled together with compilers and additional software. 
-                    This guide focuses on the LLVM package, <code>LLVM-MinGW</code>, which provides the LLVM compilers and also comes bundled with <code>make</code> and <code>Python</code> (Version >= 3.9).
+                    This guide focuses on the LLVM package, <code>LLVM-MinGW</code>, which provides the LLVM compilers and also comes bundled with <code>make</code> and <code>Python</code> (version &gt;= 3.9).
                 </li>
                 <li style="margin-top: 1em;">
                     Use the link on the website or go directly to:
@@ -61,7 +61,7 @@
                 </li>
                 <li style="margin-top: 1em;">
                     We need to understand which version we want to download. 
-                    A brief explanation is found on the project homepage on Github:
+                    A brief explanation is found on the project homepage on GitHub:
                     <pre class="highlight"><a href="https://github.com/mstorsjo/llvm-mingw#releases">https://github.com/mstorsjo/llvm-mingw#releases</a></pre>
                     We want to work on Windows directly, so we look for Zip-files called 
                     <pre>llvm-mingw-&lt;version&gt;-&lt;crt&gt;-&lt;arch&gt;.zip</pre>
@@ -73,8 +73,8 @@
                         </li>
                         <li>
                             <code>&lt;crt&gt;</code>
-                            - The C runtime library required, which is either <code>mscvrt</code> or <code>ucrt</code>. 
-                            The former is the MSV C runtime, which is available on all versions of Windows but has less features.
+                            - The C runtime library required, which is either <code>msvcrt</code> or <code>ucrt</code>.
+                            The former is the MSV C runtime, which is available on all versions of Windows but has fewer features.
                             The latter is the Universal C runtime, which is pre-installed from Windows 10 onwards.
                             Please note that the Zip-file will not provide that runtime library, 
                             you need to make sure that your Windows installation already provides it. 
@@ -90,10 +90,10 @@
                                 <li style="margin-bottom: 1em;"><code>aarch64</code>, which is the 64-bit architecture of ARM</li>
                             </ul>
                             All the possible packages contain binaries to compile <b>for</b> any of those architectures but these binaries only run <b>on</b> the specified architecture.
-                            For that reason, you need look up which processor is being used on your machine and pick the appropriate package.
+                            For that reason, you need to look up which processor is being used on your machine and pick the appropriate package.
                         </li>
                     </ol>
-                    Let us suppose from now on that we have picked 64-bit Intel CPU and, just for compatibility reasons, use the MSV C runtime.
+                    Let us suppose from now on that we have picked a 64-bit Intel CPU and, just for compatibility reasons, use the MSV C runtime.
                     The version will be <code>20231003</code>.
                     You <b>must</b> adapt the following lines according to your choice of package, and likely your version number will be more advanced.
                     <br>
@@ -104,18 +104,18 @@
         </article>
 
         <article id="article-2">
-            <h1>Installing and testing clang and make</h1>
+            <h2>Installing and testing clang and make</h2>
             <ol>
                 <li>
-                    The installation begins with simply unpacking the .zip archive and transfering the folder to a convenient location. 
-                    For simplicity, we will put our copy to the top folder folder of the main drive <code>C:\</code>.
+                    The installation begins with simply unpacking the .zip archive and transferring the folder to a convenient location.
+                    For simplicity, we will place our copy in the root folder of the main drive <code>C:\</code>.
                     All the binaries are now contained in 
                     <pre><code>C:\llvm-mingw-20231003-msvcrt-x86_64</code></pre>
                 </li>
                 <li>
                     The most important subfolder is 
                     <pre><code>C:\llvm-mingw-20231003-msvcrt-x86_64\bin</code></pre>
-                    which contains the binaries that we want to evoke.
+                    which contains the binaries that we want to invoke.
                 </li>
                 <li>
                     We modify the Windows path variable. For that, we need to access the "Advanced System Settings".
@@ -123,7 +123,7 @@
                     Alternatively, open <code>Control Panel</code>, then <code>System and Security</code>, then <code>System</code>, then look for <code>Advanced System Settings</code>.
                 </li>
                 <li>
-                    Once that the advanced system settings dialog is open, titled <code>System Properties</code>, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
+                    Once the advanced system settings dialog, titled <code>System Properties</code>, is open, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
                 </li>
                 <li>
                     In the first list, click on <code>Path</code> and then <code>Edit...</code>.
@@ -131,9 +131,9 @@
                     Then click <code>OK</code> on all remaining open dialogues.
                 </li>
                 <li>
-                    The installations should be ready to use by now. 
-                    We can try either Git Bash, Cygwin, Windows Powershell, or the Methuselian cmd.exe. 
-                    All of these load the Windows path variable
+                    The installations should be ready to use by now.
+                    We can try either Git Bash, Cygwin, Windows PowerShell, or the Methuselian cmd.exe.
+                    All of these load the Windows path variable.
                     <ol style="margin-bottom: 1em; margin-top: 1em;">
                         <li>
                             Open any of those command prompts and enter <code>clang --version</code>. That should display some self-description of Clang, including the version number.
@@ -146,17 +146,17 @@
                             You can look up any of the other commands in the binary folder if you have need for something else.
                         </li>
                     </ol>
-                    One of word of caution: 
-                    different command prompts will try to look up the corresponding in various places, prioritizing one folder over the other.
+                    One word of caution:
+                    different command prompts will try to look up the corresponding executable in various places, prioritizing one folder over another.
                     For example, when calling <code>gcc</code>, Cygwin will first look in its own internal directories for <code>gcc</code> before any MinGW32 implementation, 
-                    so if your Cygwin installations already includes GCC, then Cygwin will pick that one.
+                    so if your Cygwin installation already includes GCC, then Cygwin will pick that one.
                     Another example: calling <code>make</code> in Cygwin will call the binary at <code>/usr/bin/make</code> but <code>mingw32-make</code> will be found in your Windows system.
                 </li>
             </ol>
         </article>
 
         <article id="article-3">
-            <h1>Unix utilities on Windows PowerShell</h1>
+            <h2>Unix utilities on Windows PowerShell</h2>
             <ol>
                 <li>
                     We focus now on Makefiles and their use via Windows PowerShell: 
@@ -180,7 +180,7 @@
                     Alternatively, we open <code>Control Panel</code>, then <code>System and Security</code>, then <code>System</code>, then look for <code>Advanced System Settings</code>.
                 </li>
                 <li>
-                    Once that Windows is open, named <code>System Properties</code>, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
+                    Once the <code>System Properties</code> window is open, open the tab <code>Advanced</code> and click on <code>Environment Variables...</code>
                 </li>
                 <li>
                     In the first list, click on <code>Path</code> and then <code>Edit...</code>.
@@ -199,20 +199,20 @@
         <footer class="flex-item">
                 <i>
                     Last Update: 
-                    <script language="JavaScript">
+                    <script>
                       var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
                       var mydate = new Date( document.lastModified );
                       document.write( months[ mydate.getMonth() ] + " " + mydate.getDate() + ", " + mydate.getFullYear() );
                     </script>
                     <!-- November 2, 2021 -->
                   <br>
-                  <a class=tarnkappe href="https://arxiv.org/abs/1710.06868">Martin Werner Licht</a>
-                  <a class=tarnkappe href="https://arxiv.org/abs/1612.02756">Martin Werner Licht</a>
+                  <a class="tarnkappe" href="https://arxiv.org/abs/1710.06868">Martin Werner Licht</a>
+                  <a class="tarnkappe" href="https://arxiv.org/abs/1612.02756">Martin Werner Licht</a>
                   Martin W. Licht
                 </i>
                 <p>
-                    <a href="https://validator.w3.org/check?uri=martinlicht.github.io/git.html" target="_blank">
-                        <img src="https://www.w3.org/Icons/valid-html401.png" alt="Valid XHTML 1.0!" height="31" width="88">
+                    <a href="https://validator.w3.org/check?uri=https%3A%2F%2Fmartinlicht.github.io%2Fclangmakewindows.html" target="_blank">
+                        <img src="https://www.w3.org/Icons/valid-html401.png" alt="Validate HTML" height="31" width="88">
                     </a>
                 </p>
         </footer>

@@ -27,7 +27,12 @@ function showSection(sectionId) {
         'about' : 'outro'
     };
 
-    groupName = groups[sectionId];
+    const requestedSection = document.getElementById(sectionId);
+    if (!requestedSection || !requestedSection.classList.contains('mysection')) {
+        sectionId = 'start';
+    }
+
+    const groupName = groups[sectionId];
     
     // get the main content container 
     
@@ -56,7 +61,7 @@ function showSection(sectionId) {
 
     // adjust background based on group 
 
-    body = document.getElementsByTagName('body')[0];
+    const body = document.getElementsByTagName('body')[0];
 
     if( groupName == 'intro'){
         // container.style.backgroundColor = "aquamarine";

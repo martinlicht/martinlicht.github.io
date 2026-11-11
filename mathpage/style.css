@@ -120,13 +120,14 @@ div.mycontainer {
 article.mysection {
     position: absolute;
     /* top: 0; */
-    transition: opacity 1.0s ease; 
+    transition: opacity 1.0s ease, visibility 0s linear 1.0s;
     opacity: 0;
     background-color: #f4f4f4;
     visibility: hidden;
-    display: hidden;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
     overflow: hidden;
-    height: 0;
 
     padding: 1em 5em;
     margin: 0em;
@@ -137,9 +138,8 @@ article.mysection {
 article.active {
     opacity: 1;
     visibility: visible;
-    display: flex;
-    flex-direction: column;
-    height:auto;
+    pointer-events: auto;
+    transition-delay: 0s;
 }
 
 
